@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>JEE Mock Tests</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+<style>
+:root{
+  --bg:#eef2f7; --panel:#ffffff; --fg:#17212e; --muted:#5b6878; --line:#d5dce6;
+  --brand:#1b4f8f; --brand-fg:#ffffff; --brand-soft:#e4edf8;
+  --ok:#1f8a3d; --ok-soft:#e1f3e6; --warn:#9a6700; --warn-soft:#fff3d6; --focus:#1b4f8f;
+  --font:'Inter',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
+  color-scheme:light;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#10161f; --panel:#18212d; --fg:#e6ebf2; --muted:#9aa7b8; --line:#2c394a;
+  --brand:#5b9ae6; --brand-fg:#0b1523; --brand-soft:#1d2f47;
+  --ok:#4cc26d; --ok-soft:#183626; --warn:#e8b84a; --warn-soft:#3a2f13; --focus:#7db1f2; color-scheme:dark;}}
+:root[data-theme="dark"]{
+  --bg:#10161f; --panel:#18212d; --fg:#e6ebf2; --muted:#9aa7b8; --line:#2c394a;
+  --brand:#5b9ae6; --brand-fg:#0b1523; --brand-soft:#1d2f47;
+  --ok:#4cc26d; --ok-soft:#183626; --warn:#e8b84a; --warn-soft:#3a2f13; --focus:#7db1f2; color-scheme:dark;}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html,body{min-height:100%}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:var(--font);font-size:15px;line-height:1.5;
+  padding-block:0;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));
+  display:flex;flex-direction:column;min-height:100vh}
+main{flex:1;width:100%;max-width:980px;margin:0 auto;padding-block:20px}
+header.top{background:var(--brand);color:var(--brand-fg);border-radius:8px;padding:20px 22px;margin-bottom:18px}
+header.top h1{margin:0 0 4px;font-size:24px;line-height:1.2}
+header.top p{margin:0;opacity:.9;font-size:14px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:14px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:18px;display:flex;flex-direction:column;gap:10px;min-width:0}
+.card .eyebrow{font-size:12px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--brand)}
+.card h2{margin:0;font-size:18px;line-height:1.3;text-wrap:balance}
+.card .sub{font-size:13px;color:var(--muted)}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{font-size:12px;font-weight:600;border-radius:99px;padding:3px 11px;background:var(--brand-soft);color:var(--brand)}
+.status{font-size:13px;font-weight:600;border-radius:6px;padding:6px 10px;background:var(--bg);color:var(--muted)}
+.status.prog{background:var(--warn-soft);color:var(--warn)}
+.status.done{background:var(--ok-soft);color:var(--ok)}
+.go{margin-top:auto;display:inline-block;text-align:center;text-decoration:none;font-weight:600;font-size:14px;border-radius:6px;padding:10px 16px;background:var(--brand);color:var(--brand-fg);border:1px solid var(--brand)}
+.go:hover{filter:brightness(1.08)}
+.go:focus-visible{outline:3px solid var(--focus);outline-offset:2px}
+.msg{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:22px;color:var(--muted)}
+.credit{text-align:center;font-size:11px;color:var(--muted);padding:8px 0 10px}
+</style>
+</head>
+<body>
+<main>
+  <header class="top">
+    <h1>JEE Mock Tests</h1>
+    <p>Choose a paper and press Start. Each paper is timed and shows your score and full solutions at the end.</p>
+  </header>
+  <div id="list" class="grid" aria-live="polite"></div>
+  <div id="msg" class="msg" hidden></div>
+</main>
+<footer class="credit">Created by Dhairya Chandak.</footer>
+<script>
+(function(){
+  var list=document.getElementById('list'), msg=document.getElementById('msg');
+  function esc(s){return String(s==null?'':s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
+  function state(id){
+    try{var o=JSON.parse(localStorage.getItem('mocktest:'+id)||'null');return o&&typeof o==='object'?o:null;}catch(e){return null;}
+  }
+  function showMsg(t){list.hidden=true;msg.hidden=false;msg.textContent=t;}
+  fetch('papers.json',{cache:'no-store'}).then(function(r){
+    if(!r.ok)throw new Error('http '+r.status);return r.json();
+  }).then(function(papers){
+    if(!papers.length){showMsg('No papers have been uploaded yet.');return;}
+    list.innerHTML=papers.map(function(p){
+      var s=state(p.id),cls='',txt='Not attempted yet',btn='Start test';
+      if(s&&s.started&&s.submitted){
+        cls='done';btn='View result';
+        txt=(typeof s.score==='number')?'Last score: '+s.score+' / '+p.marks:'Submitted';
+      }else if(s&&s.started){cls='prog';txt='In progress';btn='Resume test';}
+      return '<article class="card"><div class="eyebrow">'+esc(p.series)+'</div>'+
+        '<h2>'+esc(p.title)+'</h2><div class="sub">'+esc(p.subject)+'</div>'+
+        '<div class="chips"><span class="chip">'+p.questions+' questions</span><span class="chip">'+p.marks+' marks</span><span class="chip">'+p.minutes+' min</span></div>'+
+        '<div class="status '+cls+'">'+esc(txt)+'</div>'+
+        '<a class="go" href="'+esc(p.file)+'">'+btn+'</a></article>';
+    }).join('');
+  }).catch(function(){
+    showMsg('The paper list could not be loaded. Open this site through its GitHub Pages link. It will not work when the file is opened directly from a folder.');
+  });
+})();
+</script>
+</body>
+</html>

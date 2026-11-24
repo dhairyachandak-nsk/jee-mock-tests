@@ -1,0 +1,810 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>JEE Definite Integration Mock Test</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+<style>
+/* Layout: NTA-style exam console. Top bar with timer, question pane on the left, question palette on the right. Intro and analysis are single scrolling pages. */
+:root{
+  --bg:#eef2f7; --panel:#ffffff; --fg:#17212e; --muted:#5b6878; --line:#d5dce6;
+  --brand:#1b4f8f; --brand-fg:#ffffff; --brand-soft:#e4edf8;
+  --nv-bg:#f1f3f6; --nv-fg:#3d4856;
+  --na:#d8412f; --an:#2a9448; --mk:#6a3fb5;
+  --ok:#1f8a3d; --ok-soft:#e1f3e6; --bad:#c7352b; --bad-soft:#fbe6e3; --warn:#9a6700; --warn-soft:#fff3d6;
+  --sel:#e4edf8; --focus:#1b4f8f;
+  --font:'Inter',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#10161f; --panel:#18212d; --fg:#e6ebf2; --muted:#9aa7b8; --line:#2c394a;
+  --brand:#5b9ae6; --brand-fg:#0b1523; --brand-soft:#1d2f47;
+  --nv-bg:#243142; --nv-fg:#c4cfdd;
+  --na:#e5594a; --an:#35ad57; --mk:#9269dc;
+  --ok:#4cc26d; --ok-soft:#183626; --bad:#f0766a; --bad-soft:#3b1f1d; --warn:#e8b84a; --warn-soft:#3a2f13;
+  --sel:#1d2f47; --focus:#7db1f2; color-scheme:dark;}}
+:root[data-theme="dark"]{
+  --bg:#10161f; --panel:#18212d; --fg:#e6ebf2; --muted:#9aa7b8; --line:#2c394a;
+  --brand:#5b9ae6; --brand-fg:#0b1523; --brand-soft:#1d2f47;
+  --nv-bg:#243142; --nv-fg:#c4cfdd;
+  --na:#e5594a; --an:#35ad57; --mk:#9269dc;
+  --ok:#4cc26d; --ok-soft:#183626; --bad:#f0766a; --bad-soft:#3b1f1d; --warn:#e8b84a; --warn-soft:#3a2f13;
+  --sel:#1d2f47; --focus:#7db1f2; color-scheme:dark;}
+
+[hidden]{display:none!important}
+*{box-sizing:border-box}
+html,body{height:100%}
+body{background:var(--bg);color:var(--fg);font-family:var(--font);font-size:15px;line-height:1.5;margin:0;
+  padding-block:0;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));
+  display:flex;flex-direction:column}
+button{font:inherit;color:inherit;cursor:pointer}
+:focus-visible{outline:3px solid var(--focus);outline-offset:2px}
+.num,.timer,table,.pal-btn{font-variant-numeric:tabular-nums}
+mjx-container{max-width:100%;overflow-x:auto;overflow-y:hidden}
+mjx-container[display="true"]{margin:.7em 0 !important}
+
+#app{flex:1;min-height:0;display:flex;flex-direction:column;padding-top:12px}
+.view{flex:1;min-height:0;display:flex;flex-direction:column}
+.credit{flex:none;text-align:center;font-size:11px;color:var(--muted);padding:8px 0 10px}
+
+/* top bar */
+.topbar{flex:none;display:flex;align-items:center;gap:12px;background:var(--brand);color:var(--brand-fg);border-radius:8px;padding:10px 16px;margin-bottom:12px;flex-wrap:wrap}
+.topbar .ttl{min-width:0;flex:1}
+.topbar .ttl b{display:block;font-size:15px;font-weight:700;letter-spacing:.01em}
+.topbar .ttl span{font-size:12px;opacity:.85}
+.timer-box{display:flex;align-items:center;gap:8px;background:rgba(255,255,255,.16);border-radius:6px;padding:6px 12px;font-size:13px}
+.timer{font-size:20px;font-weight:700;letter-spacing:.03em}
+.timer-box.low{background:#b7791f;color:#fff}
+.timer-box.crit{background:#c7352b;color:#fff}
+.palbtn{display:none;background:rgba(255,255,255,.16);border:0;border-radius:6px;color:inherit;padding:8px 12px;font-weight:600;font-size:13px}
+
+/* generic cards, buttons */
+.back{display:inline-block;margin-bottom:8px;font-size:13px;font-weight:600;color:var(--brand);text-decoration:none}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:8px}
+.btn{border:1px solid var(--line);background:var(--panel);color:var(--fg);border-radius:6px;padding:10px 16px;font-weight:600;font-size:14px;line-height:1.2}
+.btn:hover:not(:disabled){border-color:var(--brand)}
+.btn.primary{background:var(--brand);border-color:var(--brand);color:var(--brand-fg)}
+.btn.primary:hover:not(:disabled){filter:brightness(1.08)}
+.btn.review{background:var(--mk);border-color:var(--mk);color:#fff}
+.btn.danger{background:var(--na);border-color:var(--na);color:#fff}
+.btn:disabled{opacity:.45;cursor:not-allowed}
+
+/* ---------- intro ---------- */
+.scroll{flex:1;min-height:0;overflow:auto;padding-bottom:8px}
+.page{max-width:900px;margin:0 auto;display:flex;flex-direction:column;gap:14px}
+.hero{padding:20px 22px}
+.hero .eyebrow{font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--brand)}
+.hero h1{font-size:26px;line-height:1.2;margin:4px 0 12px;text-wrap:balance}
+.meta{display:flex;flex-wrap:wrap;gap:10px}
+.meta div{background:var(--brand-soft);border-radius:6px;padding:8px 14px;font-size:13px;color:var(--muted)}
+.meta b{display:block;color:var(--fg);font-size:16px}
+.sec{padding:18px 22px}
+.sec h2{font-size:16px;margin:0 0 10px}
+.sec ol,.sec ul{margin:0;padding-left:22px;display:flex;flex-direction:column;gap:7px}
+.legend-list{list-style:none !important;padding:0 !important}
+.legend-list li{display:flex;align-items:center;gap:12px}
+.start-row{padding:16px 22px;display:flex;flex-direction:column;gap:12px}
+.agree{display:flex;gap:10px;align-items:flex-start;font-size:14px;cursor:pointer}
+.agree input{margin-top:4px;width:18px;height:18px;flex:none}
+
+/* palette status symbols */
+.pal-btn{width:40px;height:40px;border:0;font-weight:600;font-size:14px;display:inline-flex;align-items:center;justify-content:center;position:relative}
+.s-nv{background:var(--nv-bg);color:var(--nv-fg);border:1px solid var(--line);border-radius:6px}
+.s-na{background:var(--na);color:#fff;border-radius:6px 6px 18px 18px}
+.s-an{background:var(--an);color:#fff;border-radius:18px 18px 6px 6px}
+.s-mk{background:var(--mk);color:#fff;border-radius:50%}
+.s-am{background:var(--mk);color:#fff;border-radius:50%}
+.s-am::after{content:"";position:absolute;right:-1px;bottom:-1px;width:13px;height:13px;border-radius:50%;background:var(--an);border:2px solid var(--panel)}
+.pal-btn.cur{box-shadow:0 0 0 3px var(--panel),0 0 0 5px var(--brand)}
+.sym{width:32px;height:32px;font-size:13px;flex:none;cursor:default}
+.sym.s-am::after{width:11px;height:11px}
+
+/* ---------- test ---------- */
+.testgrid{flex:1;min-height:0;display:grid;grid-template-columns:minmax(0,1fr) 316px;gap:14px}
+.qpane{min-height:0;display:flex;flex-direction:column;min-width:0}
+.sectabs{flex:none;display:flex;gap:6px;flex-wrap:wrap;margin-bottom:10px}
+.sectab{border:1px solid var(--line);background:var(--panel);border-radius:6px;padding:7px 14px;font-weight:600;font-size:13px;color:var(--muted)}
+.sectab.on{background:var(--brand-soft);border-color:var(--brand);color:var(--brand)}
+.qcard{flex:1;min-height:0;display:flex;flex-direction:column;overflow:hidden}
+.qhead{flex:none;display:flex;align-items:center;gap:10px;flex-wrap:wrap;padding:10px 18px;border-bottom:1px solid var(--line)}
+.qhead .qn{font-weight:700;font-size:16px}
+.chip{font-size:12px;font-weight:600;border-radius:99px;padding:3px 10px;background:var(--brand-soft);color:var(--brand)}
+.chip.plus{background:var(--ok-soft);color:var(--ok)}
+.chip.minus{background:var(--bad-soft);color:var(--bad)}
+.qhead .sp{flex:1}
+.qbody{flex:1;min-height:0;overflow:auto;padding:16px 18px 20px}
+.qhint{font-size:13px;color:var(--muted);margin:0 0 12px}
+.qtext{font-size:17px;line-height:1.65;margin-bottom:16px}
+.opts{display:flex;flex-direction:column;gap:10px}
+.opt{display:flex;align-items:center;gap:12px;border:1.5px solid var(--line);border-radius:8px;padding:10px 14px;cursor:pointer;background:var(--panel);min-width:0}
+.opt:hover{border-color:var(--brand)}
+.opt:has(input:checked){background:var(--sel);border-color:var(--brand)}
+.opt input{width:18px;height:18px;flex:none;accent-color:var(--brand)}
+.ol{font-weight:700;color:var(--muted);width:20px;flex:none}
+.ot{font-size:16.5px;min-width:0;overflow-x:auto}
+.numwrap{max-width:320px;display:flex;flex-direction:column;gap:10px}
+.numwrap label{font-weight:600;font-size:14px}
+.numin{font:inherit;font-size:22px;font-weight:600;padding:10px 14px;border:1.5px solid var(--line);border-radius:8px;background:var(--panel);color:var(--fg);width:100%;letter-spacing:.06em}
+.keys{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.key{padding:12px 0;border:1px solid var(--line);background:var(--bg);border-radius:6px;font-size:18px;font-weight:600}
+.key:hover{border-color:var(--brand)}
+.key.w2{grid-column:span 2;font-size:14px}
+.actions{flex:none;display:flex;flex-wrap:wrap;gap:8px;justify-content:space-between;margin-top:10px;padding:10px 12px;background:var(--panel);border:1px solid var(--line);border-radius:8px}
+.actions .grp{display:flex;gap:8px;flex-wrap:wrap}
+.savehint{flex:none;font-size:12px;color:var(--muted);margin:6px 2px 0;min-height:18px}
+
+/* palette */
+.pal{min-height:0;display:flex;flex-direction:column;overflow:hidden}
+.pal h3{flex:none;margin:0;padding:12px 16px;font-size:14px;border-bottom:1px solid var(--line)}
+.pal-scroll{flex:1;min-height:0;overflow:auto;padding:12px 16px}
+.legend{display:grid;grid-template-columns:1fr 1fr;gap:10px 8px;font-size:12px;color:var(--muted);margin-bottom:14px}
+.legend div{display:flex;align-items:center;gap:8px;line-height:1.25}
+.pgroup{margin-bottom:14px}
+.pgroup h4{margin:0 0 8px;font-size:12px;letter-spacing:.05em;text-transform:uppercase;color:var(--muted)}
+.pgrid{display:grid;grid-template-columns:repeat(5,40px);gap:10px;justify-content:space-between}
+.pal-foot{flex:none;padding:12px 16px;border-top:1px solid var(--line)}
+.pal-foot .btn{width:100%}
+.backdrop{display:none}
+
+/* modal and toast */
+.modal{position:fixed;inset:0;background:rgba(10,20,35,.55);display:flex;align-items:center;justify-content:center;padding:16px;z-index:50}
+.modal .box{max-width:460px;width:100%;padding:22px;max-height:90%;overflow:auto}
+.modal h2{margin:0 0 6px;font-size:18px}
+.modal p{margin:0 0 12px;color:var(--muted)}
+.sumtab{width:100%;border-collapse:collapse;margin-bottom:16px;font-size:14px}
+.sumtab td{padding:7px 4px;border-bottom:1px solid var(--line)}
+.sumtab td:last-child{text-align:right;font-weight:700}
+.modal .row{display:flex;gap:10px;justify-content:flex-end;flex-wrap:wrap}
+.toast{position:fixed;left:50%;bottom:calc(48px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:#17212e;color:#fff;padding:10px 18px;border-radius:8px;font-size:14px;z-index:60;max-width:90%;text-align:center}
+
+/* ---------- result ---------- */
+.score{padding:22px;display:flex;flex-wrap:wrap;gap:20px;align-items:center}
+.bigscore{min-width:170px}
+.bigscore small{display:block;font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);font-weight:600}
+.bigscore .v{font-size:46px;font-weight:700;line-height:1.1}
+.bigscore .v span{font-size:20px;color:var(--muted);font-weight:500}
+.stats{flex:1;min-width:260px;display:grid;grid-template-columns:repeat(auto-fit,minmax(110px,1fr));gap:10px}
+.stat{border-radius:8px;padding:10px 12px;background:var(--bg)}
+.stat b{display:block;font-size:22px}
+.stat span{font-size:12px;color:var(--muted)}
+.stat.ok b{color:var(--ok)} .stat.bad b{color:var(--bad)} .stat.un b{color:var(--muted)}
+.notice{background:var(--warn-soft);color:var(--warn);border-radius:8px;padding:10px 14px;font-size:14px;font-weight:600}
+.tablewrap{overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-size:14px}
+th{text-align:left;font-size:12px;letter-spacing:.04em;text-transform:uppercase;color:var(--muted);padding:10px 12px;border-bottom:1px solid var(--line);white-space:nowrap}
+td{padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:middle}
+tr.qrow{cursor:pointer}
+tr.qrow:hover td{background:var(--bg)}
+tr.qrow:focus-visible{outline:3px solid var(--focus);outline-offset:-3px}
+.ans{display:inline-block;min-width:44px;text-align:center;font-weight:700;border-radius:6px;padding:3px 10px}
+.ans.ok{background:var(--ok-soft);color:var(--ok)}
+.ans.bad{background:var(--bad-soft);color:var(--bad)}
+.ans.un{background:var(--nv-bg);color:var(--muted)}
+.ans.key{background:var(--ok-soft);color:var(--ok);padding:3px 10px;border:0;font-size:inherit}
+.mk-pos{color:var(--ok);font-weight:700}.mk-neg{color:var(--bad);font-weight:700}.mk-zero{color:var(--muted);font-weight:700}
+.topic{color:var(--muted);font-size:13px}
+.open-ind{color:var(--brand);font-weight:600;white-space:nowrap;font-size:13px}
+tr.solrow td{background:var(--bg);padding:16px 18px}
+.solbox{max-width:820px}
+.solbox h5{margin:14px 0 6px;font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.solbox .qtext{font-size:15.5px;margin-bottom:10px}
+.mini-opts{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:8px;margin-bottom:6px}
+.mini-opts div{display:flex;gap:8px;align-items:center;border:1px solid var(--line);border-radius:6px;padding:6px 10px;background:var(--panel);min-width:0;font-size:15px}
+.mini-opts div.c{border-color:var(--ok);background:var(--ok-soft)}
+.mini-opts div.w{border-color:var(--bad);background:var(--bad-soft)}
+.mini-opts .tag{margin-left:auto;font-size:11px;font-weight:700;white-space:nowrap}
+.idea{background:var(--brand-soft);border-radius:6px;padding:8px 12px;font-size:14px;margin:0 0 10px}
+.trap{background:var(--warn-soft);color:var(--warn);border-radius:6px;padding:8px 12px;font-size:14px;margin:10px 0 0}
+.finalans{display:inline-block;margin-top:8px;background:var(--ok-soft);color:var(--ok);font-weight:700;border-radius:6px;padding:5px 12px}
+.sol p{margin:0 0 8px}
+.filters{display:flex;gap:8px;flex-wrap:wrap;padding:12px 16px;border-bottom:1px solid var(--line);align-items:center}
+.filters .f{border:1px solid var(--line);background:var(--panel);border-radius:99px;padding:5px 14px;font-size:13px;font-weight:600;color:var(--muted)}
+.filters .f.on{background:var(--brand);border-color:var(--brand);color:var(--brand-fg)}
+.filters .hint{margin-left:auto;font-size:12px;color:var(--muted)}
+.resbar{display:flex;gap:10px;flex-wrap:wrap}
+
+@media (max-width:900px){
+  .testgrid{grid-template-columns:minmax(0,1fr)}
+  .palbtn{display:inline-block}
+  .pal{position:fixed;top:env(safe-area-inset-top,0px);bottom:0;right:0;width:min(340px,92vw);z-index:40;transform:translateX(105%);transition:transform .2s;border-radius:8px 0 0 8px;padding-bottom:env(safe-area-inset-bottom,0px)}
+  .pal.open{transform:none}
+  .backdrop.show{display:block;position:fixed;inset:0;background:rgba(10,20,35,.5);z-index:35}
+  .hide-sm{display:none}
+  .qtext{font-size:16px}
+  .hero h1{font-size:22px}
+}
+@media (max-width:520px){
+  .actions .btn{padding:10px 12px;font-size:13px}
+  .actions .grp{width:100%}
+  .actions .grp .btn{flex:1}
+}
+@media (prefers-reduced-motion:reduce){.pal{transition:none}}
+</style>
+
+</head>
+<body>
+<div id="app">
+  <section id="v-intro" class="view" hidden></section>
+  <section id="v-test" class="view" hidden></section>
+  <section id="v-result" class="view" hidden></section>
+</div>
+<footer class="credit">Created by Dhairya Chandak.</footer>
+<div id="overlay"></div>
+<div id="toast" class="toast" hidden></div>
+
+<script>
+/* Math rendering. SVG output needs no external stylesheet or fonts. */
+window.MathJax={tex:{inlineMath:[['\\(','\\)']],displayMath:[['\\[','\\]']]},svg:{fontCache:'local'},startup:{typeset:false}};
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-svg.min.js"></script>
+
+<!-- ===================== PAPER DATA (replace this block for a new paper) ===================== -->
+<script id="paper-data">
+const r=String.raw;
+const PAPER={
+  id:'jee-main-definite-integration-05',
+  series:'JEE Main Revision Series',
+  title:'Chapter 5: Definite Integration',
+  subject:'Class XII Mathematics',
+  durationMin:60,
+  plus:4, minus:-1,
+  notation:r`Throughout this paper, \(\lfloor t\rfloor\) denotes the greatest integer less than or equal to \(t\), and \(\{t\}=t-\lfloor t\rfloor\) denotes the fractional part of \(t\).`,
+  sections:[
+    {name:'Section A',label:'Single-Correct MCQ',type:'mcq',from:1,to:20,
+      rule:'Each question has four options (A), (B), (C) and (D), out of which ONLY ONE is correct. +4 for a correct answer, \u22121 for an incorrect answer, 0 if unattempted.'},
+    {name:'Section B',label:'Numerical Value',type:'num',from:21,to:25,
+      rule:'The answer to each question is a non-negative integer. Enter it using the on-screen keypad or your keyboard. +4 for the correct integer, \u22121 for an incorrect answer, 0 if unattempted.'}
+  ],
+  questions:[
+  {n:1,topic:"King's property with tan\u00B2x reduction",
+   q:r`The value of the definite integral \[I=\int_0^{\pi/2}\frac{x\sin x\cos x}{\sin^4x+\cos^4x}\,dx\] is equal to:`,
+   opts:[r`\dfrac{\pi^2}{8}`,r`\dfrac{\pi^2}{16}`,r`\dfrac{\pi^2}{32}`,r`\dfrac{\pi^2}{4}`],ans:'B',
+   sol:r`<p class="idea">Apply \(\int_0^af(x)dx=\int_0^af(a-x)dx\) to remove the linear factor \(x\), then divide numerator and denominator by \(\cos^4x\).</p>
+<p>Replacing \(x\) by \(\tfrac\pi2-x\): \(I=\int_0^{\pi/2}\frac{(\frac\pi2-x)\cos x\sin x}{\cos^4x+\sin^4x}dx\). Adding: \[2I=\frac\pi2\int_0^{\pi/2}\frac{\sin x\cos x}{\sin^4x+\cos^4x}dx=\frac\pi2\int_0^{\pi/2}\frac{\tan x\sec^2x}{\tan^4x+1}dx.\]</p>
+<p>Put \(u=\tan^2x\), \(du=2\tan x\sec^2x\,dx\); limits \(0\to\infty\): \[2I=\frac\pi2\cdot\frac12\int_0^\infty\frac{du}{u^2+1}=\frac\pi4\cdot\frac\pi2=\frac{\pi^2}8\Rightarrow I=\frac{\pi^2}{16}.\]</p>
+<div class="trap"><b>Pro tip:</b> whenever \(\sin^4x+\cos^4x\) is in the denominator on \([0,\pi/2]\), dividing by \(\cos^4x\) sets up \(u=\tan^2x\).</div>`},
+
+  {n:2,topic:"Queen's property on ln(1 + cos x)",
+   q:r`The value of the definite integral \[I=\int_0^{\pi}\ln(1+\cos x)\,dx\] is equal to:`,
+   opts:[r`-\dfrac\pi2\ln2`,r`\pi\ln2`,r`-\pi\ln2`,r`-2\pi\ln2`],ans:'C',
+   sol:r`<p class="idea">Use \(\int_0^{2a}f(x)dx=\int_0^a[f(x)+f(2a-x)]dx\) to combine \(\ln(1+\cos x)+\ln(1-\cos x)=2\ln\sin x\).</p>
+<p>With \(2a=\pi\): \(I=\int_0^{\pi/2}\left[\ln(1+\cos x)+\ln(1-\cos x)\right]dx=\int_0^{\pi/2}\ln(\sin^2x)dx=2\int_0^{\pi/2}\ln\sin x\,dx\).</p>
+<p>Let \(J=\int_0^{\pi/2}\ln\sin x\,dx=\int_0^{\pi/2}\ln\cos x\,dx\). Adding: \(2J=\int_0^{\pi/2}\ln\frac{\sin2x}2dx=\int_0^{\pi/2}\ln\sin2x\,dx-\frac\pi2\ln2\). With \(t=2x\) and Queen's property, \(\int_0^{\pi/2}\ln\sin2x\,dx=J\).</p>
+<p>So \(2J=J-\frac\pi2\ln2\Rightarrow J=-\frac\pi2\ln2\), and \(I=2J=-\pi\ln2\).</p>`},
+
+  {n:3,topic:'Even-odd symmetry with 1/(1 + e^h(x))',
+   q:r`The value of the definite integral \[I=\int_{-\pi/2}^{\pi/2}\left(\frac{\cos^3x}{1+e^{x^3+\sin x}}+\sin^5x\cos^2x\right)dx\] is equal to:`,
+   opts:[r`\dfrac23`,r`\dfrac43`,r`\dfrac13`,r`\dfrac\pi4`],ans:'A',
+   sol:r`<p class="idea">The odd term integrates to 0. For an even numerator over \(1+e^{h(x)}\) with \(h\) odd, use \(\int_{-a}^a\phi=\int_0^a[\phi(x)+\phi(-x)]dx\).</p>
+<p>\(\sin^5x\cos^2x\) is odd, so its integral over \([-\pi/2,\pi/2]\) is 0. For the first part, \(h(x)=x^3+\sin x\) is odd and \(\cos^3x\) is even: \[I_1=\int_0^{\pi/2}\cos^3x\left(\frac1{1+e^{h}}+\frac1{1+e^{-h}}\right)dx=\int_0^{\pi/2}\cos^3x\,dx.\]</p>
+<p>With \(u=\sin x\): \(\int_0^1(1-u^2)du=1-\tfrac13=\tfrac23\).</p>
+<div class="trap"><b>Pro tip:</b> the \(1/(1+e^x)\) trick works for ANY odd exponent \(h(x)\).</div>`},
+
+  {n:4,topic:'Multi-period integral of |sin x| and e^{x/\u03C0}',
+   q:r`The value of the definite integral \[I=\int_0^{10\pi}\left(|\sin x|+e^{\{x/\pi\}}\right)dx\] is equal to:`,
+   opts:[r`10+10\pi(e-1)`,r`20+5\pi(e-1)`,r`20+10\pi e`,r`20+10\pi(e-1)`],ans:'D',
+   sol:r`<p class="idea">Both \(|\sin x|\) and \(\{x/\pi\}\) have period \(\pi\), and \([0,10\pi]\) is exactly 10 periods.</p>
+<p>\(I=10\int_0^\pi\left(|\sin x|+e^{\{x/\pi\}}\right)dx\). On \((0,\pi)\): \(|\sin x|=\sin x\) and \(\{x/\pi\}=x/\pi\). \[I=10\left[-\cos x+\pi e^{x/\pi}\right]_0^\pi=10\left[(1+\pi e)-(-1+\pi)\right]=20+10\pi(e-1).\]</p>`},
+
+  {n:5,topic:'Newton-Leibniz rule (variable limits)',
+   q:r`Let \(g:(1,\infty)\to\mathbb R\) be defined by \[g(x)=\int_{x^2}^{x^3}\frac{dt}{\ln t}.\] Then the value of \(g'(e)\) is equal to:`,
+   opts:[r`e^2+e`,r`e^2-1`,r`e^2-e`,r`3e^2-2e`],ans:'C',
+   sol:r`<p class="idea">Apply \(\frac d{dx}\int_{\alpha(x)}^{\beta(x)}f(t)dt=f(\beta)\beta'-f(\alpha)\alpha'\). Do not try to integrate \(1/\ln t\).</p>
+<p>\(g'(x)=\frac1{\ln x^3}\cdot3x^2-\frac1{\ln x^2}\cdot2x=\frac{3x^2}{3\ln x}-\frac{2x}{2\ln x}=\frac{x^2-x}{\ln x}\).</p>
+<p>At \(x=e\) (\(\ln e=1\)): \(g'(e)=e^2-e\).</p>`},
+
+  {n:6,topic:"Limit of an integral (L'Hopital + Leibniz)",
+   q:r`The value of the limit \[L=\lim_{x\to0}\frac{\displaystyle\int_0^{\sin x}t^2e^{t^2}\,dt}{x-\sin x}\] is equal to:`,
+   opts:['2','1',r`\dfrac12`,'3'],ans:'A',
+   sol:r`<p class="idea">It is a \(0/0\) form as \(x\to0\). Differentiate numerator (Leibniz rule) and denominator once.</p>
+<p>\[L=\lim_{x\to0}\frac{\sin^2x\cdot e^{\sin^2x}\cdot\cos x}{1-\cos x}.\] Since \(\frac{\sin^2x}{1-\cos x}=\frac{1-\cos^2x}{1-\cos x}=1+\cos x\) for \(x\ne0\): \[L=\lim_{x\to0}(1+\cos x)e^{\sin^2x}\cos x=(1+1)\cdot e^0\cdot1=2.\]</p>`},
+
+  {n:7,topic:'Two-parameter Fredholm integral equation',
+   q:r`Let \(f:\mathbb R\to\mathbb R\) be a continuous function satisfying the integral equation \[f(x)=6x^2+\int_0^1(x+t)f(t)\,dt\qquad\text{for all }x\in\mathbb R.\] Then the value of \(f(1)\) is equal to:`,
+   opts:['-30','-17','-23','-41'],ans:'D',
+   sol:r`<p class="idea">Separate \(x\) from the dummy variable \(t\) by introducing constants \(A=\int_0^1f(t)dt\) and \(B=\int_0^1tf(t)dt\).</p>
+<p>\(f(x)=6x^2+Ax+B\). Substitute \(f(t)=6t^2+At+B\) into the definitions: \[A=\int_0^1(6t^2+At+B)dt=2+\tfrac A2+B\Rightarrow A-2B=4\ (1),\] \[B=\int_0^1(6t^3+At^2+Bt)dt=\tfrac32+\tfrac A3+\tfrac B2\Rightarrow3B-2A=9\ (2).\]</p>
+<p>From (1): \(A=2B+4\). In (2): \(3B-4B-8=9\Rightarrow B=-17,\ A=-30\). So \(f(x)=6x^2-30x-17\) and \(f(1)=6-30-17=-41\).</p>`},
+
+  {n:8,topic:'Scaling and Beta-Gamma function relation',
+   q:r`The value of the definite integral \[I=\int_0^2x^3(2-x)^4\,dx\] is equal to:`,
+   opts:[r`\dfrac{16}{35}`,r`\dfrac{32}{35}`,r`\dfrac{64}{35}`,r`\dfrac{32}{105}`],ans:'B',
+   sol:r`<p class="idea">Scale \([0,2]\) to \([0,1]\) with \(x=2t\), then use \(B(m,n)=\frac{(m-1)!(n-1)!}{(m+n-1)!}\).</p>
+<p>\(I=\int_0^1(2t)^3(2(1-t))^4\cdot2\,dt=2^{3+4+1}\int_0^1t^3(1-t)^4dt=256\,B(4,5)\).</p>
+<p>\(B(4,5)=\frac{3!\,4!}{8!}=\frac{144}{40320}\). So \(I=256\cdot\frac{3!4!}{8!}=\frac{256}{280}=\frac{32}{35}\).</p>
+<div class="trap"><b>Trap:</b> do not forget the Jacobian \(dx=2dt\). The total power of 2 is \(3+4+1=8\), giving 256, not 128.</div>`},
+
+  {n:9,topic:"Trig factorisation with Walli's formula",
+   q:r`The value of the definite integral \[I=\int_0^{\pi/2}\left(\sin^8x\cos^2x+\sin^6x\cos^4x\right)dx\] is equal to:`,
+   opts:[r`\dfrac{3\pi}{256}`,r`\dfrac{5\pi}{128}`,r`\dfrac{5\pi}{256}`,r`\dfrac{7\pi}{256}`],ans:'C',
+   sol:r`<p class="idea">Factor out \(\sin^6x\cos^2x\) so that \(\sin^2x+\cos^2x=1\) collapses the two terms into one Walli integral.</p>
+<p>\(I=\int_0^{\pi/2}\sin^6x\cos^2x(\sin^2x+\cos^2x)dx=\int_0^{\pi/2}\sin^6x\cos^2x\,dx\). With both exponents even, Walli's formula gives \[I=\frac{(5\cdot3\cdot1)(1)}{8\cdot6\cdot4\cdot2}\cdot\frac\pi2=\frac{15}{384}\cdot\frac\pi2=\frac{5\pi}{256}.\]</p>`},
+
+  {n:10,topic:'Limit of a Riemann sum over [0, 2]',
+   q:r`The value of the limit \[L=\lim_{n\to\infty}\sum_{r=1}^{2n}\frac{n}{n^2+3nr+2r^2}\] is equal to:`,
+   opts:[r`\ln\!\left(\dfrac53\right)`,r`\ln\!\left(\dfrac32\right)`,r`\dfrac12\ln\!\left(\dfrac53\right)`,r`\ln\!\left(\dfrac52\right)`],ans:'A',
+   sol:r`<p class="idea">Factor \(1/n\) out of the sum, replace \(r/n\to x\), and match the upper index \(r=2n\Rightarrow x=2\).</p>
+<p>Dividing by \(n^2\): \(L=\lim\frac1n\sum_{r=1}^{2n}\frac1{1+3(r/n)+2(r/n)^2}=\int_0^2\frac{dx}{1+3x+2x^2}\).</p>
+<p>\(\frac1{(1+x)(1+2x)}=\frac2{1+2x}-\frac1{1+x}\), so \[L=\left[\ln(1+2x)-\ln(1+x)\right]_0^2=\ln5-\ln3=\ln\tfrac53.\]</p>
+<div class="trap"><b>Trap:</b> \(r\) runs to \(2n\), so the upper limit is 2. Using 1 gives \(\ln\tfrac32\) (option B).</div>`},
+
+  {n:11,topic:'Greatest integer of a non-linear argument',
+   q:r`The value of the definite integral \[I=\int_0^{\sqrt5}\lfloor x^2\rfloor\,dx\] is equal to:`,
+   opts:[r`4\sqrt5-\sqrt3-\sqrt2-1`,r`4\sqrt5+\sqrt3+\sqrt2-3`,r`3\sqrt5-\sqrt3-\sqrt2-2`,r`4\sqrt5-\sqrt3-\sqrt2-3`],ans:'D',
+   sol:r`<p class="idea">Split \([0,\sqrt5]\) where \(x^2\) hits integers: \(x=1,\sqrt2,\sqrt3,2\).</p>
+<p>\[I=0+(\sqrt2-1)\cdot1+(\sqrt3-\sqrt2)\cdot2+(2-\sqrt3)\cdot3+(\sqrt5-2)\cdot4.\] Collecting terms: \(4\sqrt5+(2-3)\sqrt3+(1-2)\sqrt2+(-1+6-8)=4\sqrt5-\sqrt3-\sqrt2-3\).</p>`},
+
+  {n:12,topic:'Nested modulus piecewise decomposition',
+   q:r`The value of the definite integral \[I=\int_{-2}^{3}\Big|\,|x-1|-1\,\Big|\,dx\] is equal to:`,
+   opts:['3',r`\dfrac72`,'4',r`\dfrac92`],ans:'B',
+   sol:r`<p class="idea">Find where the inner modulus (\(x=1\)) or outer modulus (\(|x-1|=1\Rightarrow x=0,2\)) changes: critical points \(0,1,2\).</p>
+<ul><li>\(x\in[-2,0]\): \(f(x)=-x\).</li><li>\(x\in[0,1]\): \(f(x)=x\).</li><li>\(x\in[1,2]\): \(f(x)=2-x\).</li><li>\(x\in[2,3]\): \(f(x)=x-2\).</li></ul>
+<p>\(I=\int_{-2}^0(-x)dx+\int_0^1x\,dx+\int_1^2(2-x)dx+\int_2^3(x-2)dx=2+\tfrac12+\tfrac12+\tfrac12=\tfrac72\).</p>`},
+
+  {n:13,topic:'Reciprocal substitution x = 1/t',
+   q:r`The value of the definite integral \[I=\int_{1/2}^{2}\left(\frac{\ln x}{1+x^2}+\frac{\tan^{-1}x}{x}\right)dx\] is equal to:`,
+   opts:[r`\dfrac\pi2\ln2`,r`\pi\ln2`,r`\dfrac\pi4\ln2`,'0'],ans:'A',
+   sol:r`<p class="idea">Use \(x=1/t\) on both parts: the \(\ln x\) term cancels itself, and \(\tan^{-1}x\) pairs with \(\cot^{-1}x\).</p>
+<p><b>First part \(I_1\).</b> With \(x=1/t\): \(I_1=-\int_{1/2}^2\frac{\ln t}{1+t^2}dt=-I_1\Rightarrow I_1=0\).</p>
+<p><b>Second part \(I_2\).</b> With \(x=1/t\): \(I_2=\int_{1/2}^2\frac{\cot^{-1}t}{t}dt\). Adding the two forms: \[2I_2=\int_{1/2}^2\frac{\tan^{-1}x+\cot^{-1}x}{x}dx=\frac\pi2\int_{1/2}^2\frac{dx}x=\frac\pi2\cdot2\ln2=\pi\ln2.\] So \(I=0+\frac\pi2\ln2\).</p>`},
+
+  {n:14,topic:'Inverse function integral identity',
+   q:r`Let \(f:\mathbb R\to\mathbb R\) be defined by \(f(x)=e^x+x\), and let \(g=f^{-1}\) be the inverse function of \(f\). Then the value of the definite integral \[I=\int_1^{e+1}g(y)\,dy\] is equal to:`,
+   opts:[r`e-\dfrac12`,r`\dfrac12`,r`\dfrac32`,r`e-\dfrac32`],ans:'C',
+   sol:r`<p class="idea">\(f\) has no elementary inverse, so use \(\int_{f(a)}^{f(b)}f^{-1}(y)dy=b\,f(b)-a\,f(a)-\int_a^bf(x)dx\).</p>
+<p>\(f'(x)=e^x+1\gt0\), so \(f\) is a bijection. \(f(0)=1\) and \(f(1)=e+1\), so \(a=0,\ b=1\): \[I=1\cdot(e+1)-0-\int_0^1(e^x+x)dx=(e+1)-\left(e-1+\tfrac12\right)=\tfrac32.\]</p>`},
+
+  {n:15,topic:"Feynman's trick (differentiation under the integral)",
+   q:r`The value of the definite integral \[I=\int_0^1\frac{x^8-x^2}{\ln x}\,dx\] is equal to:`,
+   opts:[r`\ln2`,r`\ln4`,r`2\ln3`,r`\ln3`],ans:'D',
+   sol:r`<p class="idea">Define \(J(\alpha)=\int_0^1\frac{x^\alpha-1}{\ln x}dx\) for \(\alpha\gt-1\) and differentiate with respect to \(\alpha\).</p>
+<p>\(J'(\alpha)=\int_0^1x^\alpha dx=\frac1{\alpha+1}\), so \(J(\alpha)=\ln(\alpha+1)+C\). Since \(J(0)=0\), \(C=0\).</p>
+<p>\(I=\int_0^1\frac{(x^8-1)-(x^2-1)}{\ln x}dx=J(8)-J(2)=\ln9-\ln3=\ln3\).</p>
+<div class="trap"><b>Pro tip:</b> memorise \(\int_0^1\frac{x^a-x^b}{\ln x}dx=\ln\frac{a+1}{b+1}\).</div>`},
+
+  {n:16,topic:'Infinite telescoping tan\u207B\u00B9 series inside an integral',
+   q:r`The value of the definite integral \[I=\int_0^1\left(\sum_{r=1}^{\infty}\tan^{-1}\!\left(\frac{x}{1+r(r+1)x^2}\right)\right)dx\] is equal to:`,
+   opts:[r`\dfrac\pi4-\dfrac12\ln2`,r`\dfrac\pi4+\dfrac12\ln2`,r`\dfrac\pi2-\dfrac12\ln2`,r`\dfrac\pi4+\ln2`],ans:'B',
+   sol:r`<p class="idea">Write each term as \(\tan^{-1}((r+1)x)-\tan^{-1}(rx)\) so the series telescopes to \(\cot^{-1}x\).</p>
+<p>For \(x\in(0,1]\): \(\tan^{-1}\frac{x}{1+r(r+1)x^2}=\tan^{-1}((r+1)x)-\tan^{-1}(rx)\). Summing to \(N\): \(\tan^{-1}((N+1)x)-\tan^{-1}x\to\frac\pi2-\tan^{-1}x=\cot^{-1}x\).</p>
+<p>By parts: \(I=\int_0^1\cot^{-1}x\,dx=\left[x\cot^{-1}x\right]_0^1+\int_0^1\frac{x}{1+x^2}dx=\frac\pi4+\frac12\ln2\).</p>`},
+
+  {n:17,topic:'Tight integral estimation via comparison',
+   q:r`Let \(I=\displaystyle\int_0^1\frac{dx}{\sqrt{4-x^2-x^3}}\). Which of the following inequalities is strictly true?`,
+   opts:[r`\dfrac{\pi}{4\sqrt2}\lt I\lt\dfrac\pi4`,r`\dfrac\pi8\lt I\lt\dfrac\pi6`,r`\dfrac\pi6\lt I\lt\dfrac{\pi}{4\sqrt2}`,r`\dfrac\pi4\lt I\lt\dfrac\pi3`],ans:'C',
+   sol:r`<p class="idea">On \((0,1)\), \(0\lt x^3\lt x^2\), so the denominator lies between \(\sqrt{4-2x^2}\) and \(\sqrt{4-x^2}\), both giving exact \(\sin^{-1}\) integrals.</p>
+<p>\(4-2x^2\lt4-x^2-x^3\lt4-x^2\), so \(\frac1{\sqrt{4-x^2}}\lt\frac1{\sqrt{4-x^2-x^3}}\lt\frac1{\sqrt{4-2x^2}}\).</p>
+<p>Lower bound: \(\int_0^1\frac{dx}{\sqrt{4-x^2}}=\sin^{-1}\frac12=\frac\pi6\). Upper bound: \(\frac1{\sqrt2}\left[\sin^{-1}\frac x{\sqrt2}\right]_0^1=\frac{\pi}{4\sqrt2}\). Hence \(\frac\pi6\lt I\lt\frac\pi{4\sqrt2}\).</p>`},
+
+  {n:18,topic:'Cauchy-Schwarz inequality for integrals',
+   q:r`Let \(f:[1,4]\to(0,\infty)\) be a continuous function such that \(\displaystyle\int_1^4f(x)\,dx=12\). The minimum possible value of \(\displaystyle\int_1^4\frac{x}{f(x)}\,dx\) is:`,
+   opts:[r`\dfrac{49}{27}`,r`\dfrac{49}{9}`,r`\dfrac{14}{9}`,r`\dfrac73`],ans:'A',
+   sol:r`<p class="idea">Apply Cauchy-Schwarz with \(u=\sqrt{f}\) and \(v=\sqrt{x/f}\), then check equality is attainable.</p>
+<p>\(\left(\int_1^4\sqrt x\,dx\right)^2\le\left(\int_1^4f\,dx\right)\left(\int_1^4\frac x f\,dx\right)\). Here \(\int_1^4\sqrt x\,dx=\frac23(8-1)=\frac{14}3\).</p>
+<p>So \(\left(\tfrac{14}3\right)^2\le12\int_1^4\frac xf\,dx\Rightarrow\int_1^4\frac xf\,dx\ge\frac{196}{108}=\frac{49}{27}\).</p>
+<p>Equality holds when \(f(x)=c\sqrt x\); choosing \(c=\tfrac{18}7\gt0\) gives \(\int f=12\). So the minimum is \(\frac{49}{27}\).</p>`},
+
+  {n:19,topic:'Repeated integration by parts (boundary elimination)',
+   q:r`Let \(f:[0,1]\to\mathbb R\) be a twice continuously differentiable function satisfying \(f(0)=1,\ f(1)=4,\ f'(0)=2,\ f'(1)=5\), and \(\displaystyle\int_0^1f(x)\,dx=3\). Then the value of \[I=\int_0^1x^2f''(x)\,dx\] is equal to:`,
+   opts:['1','5','7','3'],ans:'D',
+   sol:r`<p class="idea">Integrate by parts twice so \(x^2\) drops to \(2x\) and then to 2; the boundary terms at \(x=0\) vanish.</p>
+<p>First: \(I=\left[x^2f'(x)\right]_0^1-2\int_0^1xf'(x)dx=5-2\int_0^1xf'(x)dx\). Second: \(\int_0^1xf'(x)dx=\left[xf(x)\right]_0^1-\int_0^1f(x)dx=4-3=1\).</p>
+<p>Therefore \(I=5-2(1)=3\).</p>
+<div class="trap"><b>Trap:</b> \(f(0)\) and \(f'(0)\) are distractors, since \(x^2\) and \(x\) vanish at 0.</div>`},
+
+  {n:20,topic:'Functional equation with reflection symmetry',
+   q:r`Let \(f:\mathbb R\to\mathbb R\) be a continuous function satisfying \[f(x)+f(2-x)=4x^2-8x+10\qquad\text{for all }x\in\mathbb R.\] Then the value of \(\displaystyle\int_0^2f(x)\,dx\) is equal to:`,
+   opts:[r`\dfrac{44}3`,r`\dfrac{22}3`,r`\dfrac{14}3`,r`\dfrac{26}3`],ans:'B',
+   sol:r`<p class="idea">Use \(I=\int_0^2f(x)dx=\int_0^2f(2-x)dx\), add the two forms, and integrate the given right-hand side.</p>
+<p>\(2I=\int_0^2\left[f(x)+f(2-x)\right]dx=\int_0^2(4x^2-8x+10)dx=\left[\tfrac{4x^3}3-4x^2+10x\right]_0^2=\tfrac{32}3-16+20=\tfrac{44}3\).</p>
+<p>So \(I=\tfrac{22}3\).</p>`},
+
+  {n:21,topic:'Riemann product-to-log integral limit',
+   q:r`Let \[L=\lim_{n\to\infty}\left(\frac{(3n)!}{n!\,n^{2n}}\right)^{1/n}.\] Find the exact integer value of \(e^2L\).`,
+   ans:27,
+   sol:r`<p class="idea">Take logs to turn the \(n\)-th root of a product of \(2n\) factors into a Riemann sum on \([0,2]\).</p>
+<p>\(\frac{(3n)!}{n!\,n^{2n}}=\frac{(n+1)(n+2)\cdots(n+2n)}{n^{2n}}=\prod_{r=1}^{2n}\left(1+\frac rn\right)\). Then \[\ln L=\lim\frac1n\sum_{r=1}^{2n}\ln\left(1+\tfrac rn\right)=\int_0^2\ln(1+x)dx=\left[(1+x)\ln(1+x)-x\right]_0^2=3\ln3-2.\]</p>
+<p>So \(L=\frac{27}{e^2}\) and \(e^2L=27\).</p>`},
+
+  {n:22,topic:'GIF integral of floor of square root',
+   q:r`Find the exact integer value of the definite integral \[I=\int_0^{36}\lfloor\sqrt x\rfloor\,dx\].`,
+   ans:125,
+   sol:r`<p class="idea">Partition \([0,36]\) at perfect squares. On \([k^2,(k+1)^2)\), \(\lfloor\sqrt x\rfloor=k\) over a length \(2k+1\).</p>
+<p>\(I=\sum_{k=0}^5k(2k+1)=0+3+10+21+36+55=125\).</p>
+<div class="trap"><b>Pro tip:</b> \(\int_0^{N^2}\lfloor\sqrt x\rfloor dx=\frac{N(N-1)(4N+1)}6\). For \(N=6\): \(\frac{6\cdot5\cdot25}6=125\).</div>`},
+
+  {n:23,topic:'Inverse-function identity cancelling a trig integral',
+   q:r`Let \(f:[0,2]\to[0,12]\) be defined by \(f(x)=x^3+2x+\sin\!\left(\frac{\pi x}2\right)\), and let \(g=f^{-1}\) be its inverse function. Find the exact integer value of \[I=\int_0^{12}g(y)\,dy+\int_0^2\sin\!\left(\frac{\pi x}2\right)dx\].`,
+   ans:16,
+   sol:r`<p class="idea">Verify \(f\) is increasing, apply \(\int_0^{12}g=2f(2)-0-\int_0^2f\), and watch the sine integral cancel.</p>
+<p>\(f'(x)=3x^2+2+\frac\pi2\cos\frac{\pi x}2\ge2-\frac\pi2\gt0\), so \(f\) is strictly increasing with \(f(0)=0\), \(f(2)=8+4+\sin\pi=12\).</p>
+<p>\(\int_0^{12}g(y)dy=2\cdot12-\int_0^2\left(x^3+2x+\sin\tfrac{\pi x}2\right)dx\). Adding \(\int_0^2\sin\frac{\pi x}2dx\) cancels the sine part: \[I=24-\left[\tfrac{x^4}4+x^2\right]_0^2=24-(4+4)=16.\]</p>`},
+
+  {n:24,topic:'Periodic fractional-part double-modulus integral',
+   q:r`Find the exact integer value of the definite integral \[I=\int_{-3}^{9}\left(\big|3\{x\}-1\big|+\big|3\{x\}-2\big|\right)dx\].`,
+   ans:20,
+   sol:r`<p class="idea">\(\{x\}\) has period 1 on all of \(\mathbb R\), so \([-3,9]\) (length 12) is 12 identical periods of \([0,1)\).</p>
+<p>\(I=12\int_0^1\left(|3x-1|+|3x-2|\right)dx\). Split at \(\tfrac13,\tfrac23\):</p>
+<ul><li>\([0,\tfrac13]\): integrand \(3-6x\), integral \(\tfrac23\).</li><li>\([\tfrac13,\tfrac23]\): integrand \(1\), integral \(\tfrac13\).</li><li>\([\tfrac23,1]\): integrand \(6x-3\), integral \(\tfrac23\).</li></ul>
+<p>\(I=12\left(\tfrac23+\tfrac13+\tfrac23\right)=12\cdot\tfrac53=20\).</p>`},
+
+  {n:25,topic:'Integral test bounds for floor of a sum',
+   q:r`Let \[S=\sum_{k=1}^{400}\frac1{\sqrt k}=1+\frac1{\sqrt2}+\frac1{\sqrt3}+\cdots+\frac1{\sqrt{400}}.\] Find the exact integer value of \(\lfloor S\rfloor\).`,
+   ans:38,
+   sol:r`<p class="idea">For positive, strictly decreasing \(f(x)=x^{-1/2}\), trap \(S\) between \(\int_1^{401}f\) and \(1+\int_1^{400}f\).</p>
+<p>\(\int_1^{401}\frac{dx}{\sqrt x}\lt S\lt1+\int_1^{400}\frac{dx}{\sqrt x}\). Lower bound: \(2(\sqrt{401}-1)\gt2(20-1)=38\). Upper bound: \(1+2(20-1)=39\).</p>
+<p>Hence \(38\lt S\lt39\) and \(\lfloor S\rfloor=38\).</p>`}
+  ]
+};
+
+</script>
+
+<!-- ===================== TEST ENGINE (same for every paper) ===================== -->
+<script>
+(function(){
+'use strict';
+const Q=PAPER.questions, N=Q.length, TOTAL=N*PAPER.plus, DUR=PAPER.durationMin*60*1000;
+const KEY='mocktest:'+PAPER.id;
+const $=s=>document.querySelector(s);
+const vIntro=$('#v-intro'), vTest=$('#v-test'), vRes=$('#v-result');
+const secOf=q=>PAPER.sections.findIndex(s=>q.n>=s.from&&q.n<=s.to);
+const LET=['A','B','C','D'];
+let S={started:false,startAt:0,deadline:0,cur:0,answers:{},marked:{},visited:{},submitted:false,submitAt:0,auto:false};
+let tick=null, warned={};
+
+/* ---------- storage (best-effort) ---------- */
+function save(){try{localStorage.setItem(KEY,JSON.stringify(S));}catch(e){}}
+function load(){try{const j=localStorage.getItem(KEY);if(j){const o=JSON.parse(j);if(o&&typeof o==='object')S=Object.assign(S,o);}}catch(e){}}
+function wipe(){try{localStorage.removeItem(KEY);}catch(e){}}
+
+/* ---------- helpers ---------- */
+let mjQueue=[];
+function typeset(el){
+  if(window.MathJax&&MathJax.typesetPromise){MathJax.typesetPromise([el]).catch(()=>{});}
+  else{mjQueue.push(el);}
+}
+const mjWait=setInterval(()=>{if(window.MathJax&&MathJax.typesetPromise){clearInterval(mjWait);MathJax.startup.promise.then(()=>{mjQueue.forEach(e=>typeset(e));mjQueue=[];});}},120);
+function show(v){[vIntro,vTest,vRes].forEach(x=>x.hidden=true);v.hidden=false;}
+function toast(msg){const t=$('#toast');t.textContent=msg;t.hidden=false;clearTimeout(toast.t);toast.t=setTimeout(()=>t.hidden=true,2600);}
+function fmt(ms){ms=Math.max(0,ms);const s=Math.ceil(ms/1000);const h=Math.floor(s/3600),m=Math.floor(s%3600/60),sec=s%60;
+  const p=n=>String(n).padStart(2,'0');return h?`${h}:${p(m)}:${p(sec)}`:`${p(m)}:${p(sec)}`;}
+function esc(s){return String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));}
+const hasAns=n=>S.answers[n]!==undefined&&S.answers[n]!=='';
+function status(q){
+  if(!S.visited[q.n])return 'nv';
+  const a=hasAns(q.n),m=!!S.marked[q.n];
+  if(m&&a)return 'am'; if(m)return 'mk'; if(a)return 'an'; return 'na';
+}
+const STATUS_NAME={nv:'Not visited',na:'Not answered',an:'Answered',mk:'Marked for review',am:'Answered and marked for review'};
+function counts(){const c={nv:0,na:0,an:0,mk:0,am:0};Q.forEach(q=>c[status(q)]++);return c;}
+function evalQ(q){
+  if(!hasAns(q.n))return {st:'un',m:0};
+  const a=S.answers[q.n];
+  const ok=q.opts?a===q.ans:Number(a)===q.ans;
+  return ok?{st:'ok',m:PAPER.plus}:{st:'bad',m:PAPER.minus};
+}
+
+/* ---------- intro ---------- */
+function renderIntro(){
+  const secs=PAPER.sections.map(s=>`<li><b>${esc(s.name)} (${esc(s.label)}), Q.${s.from} to Q.${s.to}:</b> ${esc(s.rule)}</li>`).join('');
+  const resumed=S.started&&!S.submitted;
+  vIntro.innerHTML=`<div class="scroll"><div class="page">
+  <div class="card hero"><a class="back" href="../index.html">&larr; All papers</a>
+    <div class="eyebrow">${esc(PAPER.series)} &middot; ${esc(PAPER.subject)}</div>
+    <h1>${esc(PAPER.title)}: Online Mock Test</h1>
+    <div class="meta">
+      <div>Questions<b>${N}</b></div><div>Total marks<b>${TOTAL}</b></div>
+      <div>Duration<b>${PAPER.durationMin} minutes</b></div>
+      <div>Marking<b>+${PAPER.plus} / ${PAPER.minus<0?'\u2212'+Math.abs(PAPER.minus):PAPER.minus}</b></div>
+    </div>
+  </div>
+  <div class="card sec"><h2>General instructions</h2><ol>
+    <li>The countdown timer is shown at the top right. It counts down from ${PAPER.durationMin}:00. When it reaches zero, the test <b>submits automatically</b> and your responses are evaluated.</li>
+    <li>The Question Palette on the right shows the status of each question using the symbols below. Click any number to jump straight to that question.</li>
+    <li>To answer a multiple-choice question, click the circle next to your chosen option. To change your answer, click another option. To deselect, press <b>Clear Response</b>.</li>
+    <li>To answer a numerical question, type the integer with your keyboard or use the on-screen keypad.</li>
+    <li>Click <b>Save &amp; Next</b> to save your answer and move to the next question. This button is enabled only after you give an answer.</li>
+    <li>Click <b>Mark for Review &amp; Next</b> to flag a question for later and move on. If you had already given an answer, it is still counted.</li>
+    <li>Use <b>Previous</b> and <b>Next</b> to move without changing the status of a question. An answer you have selected is never lost when you move around.</li>
+    <li>You can revisit and change any answer until you press <b>Submit</b> or the time runs out.</li>
+    <li>Do not refresh or close the page. If you do, the test resumes from where you left off with the correct time remaining.</li>
+    <li>After submission you will see your score, a question-wise analysis, and a full solution for every question.</li></ol></div>
+  <div class="card sec"><h2>Question palette symbols</h2><ul class="legend-list">
+    <li><span class="pal-btn sym s-nv">1</span> You have not visited the question yet.</li>
+    <li><span class="pal-btn sym s-na">3</span> You have visited the question but not answered it.</li>
+    <li><span class="pal-btn sym s-an">5</span> You have answered the question.</li>
+    <li><span class="pal-btn sym s-mk">7</span> You have not answered the question but marked it for review.</li>
+    <li><span class="pal-btn sym s-am">9</span> You have answered the question and marked it for review. It will be evaluated.</li></ul></div>
+  <div class="card sec"><h2>Marking scheme and sections</h2><ul>${secs}</ul>
+    <p style="margin:12px 0 0;color:var(--muted);font-size:14px"><b>Notation.</b> <span id="notation">${PAPER.notation}</span></p></div>
+  <div class="card start-row">
+    ${resumed?`<div class="notice">You have a test in progress. Press the button below to continue. Your timer has kept running.</div>`:`
+    <label class="agree"><input type="checkbox" id="agree"><span>I have read and understood the instructions. I am ready to begin the test.</span></label>`}
+    <div><button class="btn primary" id="startBtn" ${resumed?'':'disabled'}>${resumed?'Resume Test':'Start Test'}</button></div>
+  </div></div></div>`;
+  show(vIntro);
+  typeset($('#notation'));
+  const ag=$('#agree'),sb=$('#startBtn');
+  if(ag)ag.addEventListener('change',()=>sb.disabled=!ag.checked);
+  sb.addEventListener('click',()=>{
+    if(!S.started){S.started=true;S.startAt=Date.now();S.deadline=S.startAt+DUR;S.cur=0;S.answers={};S.marked={};S.visited={};save();}
+    startTest();
+  });
+}
+
+/* ---------- test ---------- */
+function buildTestShell(){
+  vTest.innerHTML=`
+  <div class="topbar">
+    <div class="ttl"><b>${esc(PAPER.series)} &middot; ${esc(PAPER.title)}</b><span>${esc(PAPER.subject)}</span></div>
+    <div class="timer-box" id="tbox"><span>Time left</span><span class="timer" id="timer" role="timer" aria-live="off">--:--</span></div>
+    <button class="palbtn" id="palbtn" aria-controls="pal">Palette</button>
+  </div>
+  <div class="testgrid">
+    <div class="qpane">
+      <div class="sectabs" id="sectabs"></div>
+      <div class="card qcard">
+        <div class="qhead" id="qhead"></div>
+        <div class="qbody" id="qbody"></div>
+      </div>
+      <div class="savehint" id="savehint"></div>
+      <div class="actions">
+        <div class="grp">
+          <button class="btn review" id="bReview">Mark for Review &amp; Next</button>
+          <button class="btn" id="bClear">Clear Response</button>
+        </div>
+        <div class="grp">
+          <button class="btn" id="bPrev">&larr; Previous</button>
+          <button class="btn" id="bNext">Next &rarr;</button>
+          <button class="btn primary" id="bSave">Save &amp; Next</button>
+        </div>
+      </div>
+    </div>
+    <aside class="card pal" id="pal" aria-label="Question palette">
+      <h3>Question Palette</h3>
+      <div class="pal-scroll">
+        <div class="legend" id="legend"></div>
+        <div id="pgroups"></div>
+      </div>
+      <div class="pal-foot"><button class="btn danger" id="bSubmit">Submit Test</button></div>
+    </aside>
+  </div>
+  <div class="backdrop" id="backdrop"></div>`;
+  $('#bSave').addEventListener('click',onSave);
+  $('#bReview').addEventListener('click',onReview);
+  $('#bClear').addEventListener('click',onClear);
+  $('#bPrev').addEventListener('click',()=>go(S.cur-1));
+  $('#bNext').addEventListener('click',()=>{if(S.cur>=N-1)toast('This is the last question.');else go(S.cur+1);});
+  $('#bSubmit').addEventListener('click',()=>{closePal();confirmSubmit();});
+  $('#palbtn').addEventListener('click',()=>{$('#pal').classList.add('open');$('#backdrop').classList.add('show');});
+  $('#backdrop').addEventListener('click',closePal);
+  $('#legend').innerHTML=['an','na','nv','mk','am'].map(k=>`<div><span class="pal-btn sym s-${k}" data-c="${k}">0</span>${STATUS_NAME[k]}</div>`).join('');
+}
+function closePal(){const p=$('#pal'),b=$('#backdrop');if(p)p.classList.remove('open');if(b)b.classList.remove('show');}
+
+function startTest(){
+  if(!vTest.firstChild)buildTestShell();
+  show(vTest);
+  if(S.cur<0||S.cur>=N)S.cur=0;
+  renderQ();
+  clearInterval(tick);
+  tickFn();tick=setInterval(tickFn,500);
+}
+function tickFn(){
+  const left=S.deadline-Date.now();
+  const t=$('#timer');if(t)t.textContent=fmt(left);
+  const box=$('#tbox');
+  if(box){box.classList.toggle('low',left<=10*60e3&&left>5*60e3);box.classList.toggle('crit',left<=5*60e3);}
+  if(left<=10*60e3&&left>5*60e3&&!warned[10]){warned[10]=1;toast('10 minutes remaining.');}
+  if(left<=5*60e3&&left>60e3&&!warned[5]){warned[5]=1;toast('5 minutes remaining.');}
+  if(left<=60e3&&left>0&&!warned[1]){warned[1]=1;toast('Only 1 minute remaining.');}
+  if(left<=0){clearInterval(tick);doSubmit(true);}
+}
+
+function renderQ(){
+  const q=Q[S.cur], si=secOf(q), sec=PAPER.sections[si];
+  S.visited[q.n]=true; save();
+  $('#sectabs').innerHTML=PAPER.sections.map((s,i)=>`<button class="sectab ${i===si?'on':''}" data-s="${i}">${esc(s.name)}: ${esc(s.label)}</button>`).join('');
+  $('#sectabs').querySelectorAll('.sectab').forEach(b=>b.addEventListener('click',()=>go(PAPER.sections[+b.dataset.s].from-1)));
+  $('#qhead').innerHTML=`<span class="qn">Question ${q.n} of ${N}</span><span class="sp"></span><span class="chip plus">+${PAPER.plus}</span><span class="chip minus">\u2212${Math.abs(PAPER.minus)}</span>`;
+  let body=`<p class="qhint">${q.opts?'Select one option.':'Enter your answer as a non-negative integer.'}</p><div class="qtext">${q.q}</div>`;
+  if(q.opts){
+    body+=`<div class="opts" role="radiogroup" aria-label="Options">`+q.opts.map((o,i)=>{
+      const L=LET[i];
+      return `<label class="opt"><input type="radio" name="opt" value="${L}" ${S.answers[q.n]===L?'checked':''}><span class="ol">${L}</span><span class="ot">\\(${o}\\)</span></label>`;}).join('')+`</div>`;
+  }else{
+    const v=hasAns(q.n)?S.answers[q.n]:'';
+    body+=`<div class="numwrap"><label for="numin">Your answer</label>
+      <input class="numin" id="numin" type="text" inputmode="none" autocomplete="off" maxlength="6" value="${esc(v)}" placeholder="Type or use keypad">
+      <div class="keys">${[7,8,9,4,5,6,1,2,3].map(d=>`<button class="key" data-k="${d}">${d}</button>`).join('')}
+        <button class="key" data-k="0">0</button><button class="key w2" data-k="bs">Backspace</button>
+        <button class="key w2" data-k="clr" style="grid-column:span 3">Clear</button></div></div>`;
+  }
+  const qb=$('#qbody');qb.innerHTML=body;qb.scrollTop=0;
+  if(q.opts){
+    qb.querySelectorAll('input[name=opt]').forEach(i=>i.addEventListener('change',()=>{S.answers[q.n]=i.value;save();refresh();}));
+  }else{
+    const inp=$('#numin');
+    const setV=v=>{v=v.replace(/\D/g,'').slice(0,6);inp.value=v;if(v==='')delete S.answers[q.n];else S.answers[q.n]=v;save();refresh();};
+    inp.addEventListener('keydown',e=>{
+      if(e.key.length===1&&!/\d/.test(e.key)&&!e.ctrlKey&&!e.metaKey)e.preventDefault();
+      if(e.key==='Enter'){e.preventDefault();if(!$('#bSave').disabled)onSave();}
+    });
+    inp.addEventListener('input',()=>setV(inp.value));
+    qb.querySelectorAll('.key').forEach(k=>k.addEventListener('click',()=>{
+      const c=k.dataset.k;
+      if(c==='bs')setV(inp.value.slice(0,-1));else if(c==='clr')setV('');else setV(inp.value+c);
+    }));
+  }
+  typeset(qb);
+  refresh();
+}
+function refresh(){
+  const q=Q[S.cur];
+  const ans=hasAns(q.n);
+  $('#bSave').disabled=!ans;
+  $('#bPrev').disabled=S.cur===0;
+  $('#bClear').disabled=!ans;
+  $('#savehint').textContent=ans?(S.marked[q.n]?'Answer selected. This question is also marked for review.':'Answer selected. Press Save & Next to save and continue.'):'No answer selected. Press Mark for Review & Next or Next to skip this question.';
+  const c=counts();
+  document.querySelectorAll('#legend .sym').forEach(el=>el.textContent=c[el.dataset.c]);
+  $('#pgroups').innerHTML=PAPER.sections.map(s=>{
+    const btns=Q.filter(x=>x.n>=s.from&&x.n<=s.to).map(x=>{
+      const st=status(x);
+      return `<button class="pal-btn s-${st} ${x===q?'cur':''}" data-i="${x.n-1}" aria-label="Question ${x.n}, ${STATUS_NAME[st]}"${x===q?' aria-current="true"':''}>${x.n}</button>`;}).join('');
+    return `<div class="pgroup"><h4>${esc(s.name)}: ${esc(s.label)}</h4><div class="pgrid">${btns}</div></div>`;}).join('');
+  $('#pgroups').querySelectorAll('.pal-btn').forEach(b=>b.addEventListener('click',()=>{go(+b.dataset.i);closePal();}));
+}
+function go(i){
+  if(i<0||i>=N)return;
+  S.cur=i;renderQ();
+}
+function onSave(){
+  const q=Q[S.cur];
+  if(!hasAns(q.n))return;
+  delete S.marked[q.n];save();
+  if(S.cur<N-1)go(S.cur+1);else{refresh();toast('Answer saved. This was the last question.');}
+}
+function onReview(){
+  const q=Q[S.cur];
+  S.marked[q.n]=true;save();
+  if(S.cur<N-1)go(S.cur+1);else{refresh();toast('Marked for review. This was the last question.');}
+}
+function onClear(){
+  const q=Q[S.cur];
+  delete S.answers[q.n];save();
+  renderQ();
+}
+
+/* ---------- submit ---------- */
+function confirmSubmit(){
+  const c=counts();
+  const answered=c.an+c.am, notAns=c.na+c.mk+c.nv;
+  const ov=$('#overlay');
+  ov.innerHTML=`<div class="modal" role="dialog" aria-modal="true" aria-labelledby="mt"><div class="card box">
+    <h2 id="mt">Submit the test?</h2>
+    <p>You still have <b>${fmt(S.deadline-Date.now())}</b> left. You cannot change answers after submitting.</p>
+    <table class="sumtab">
+      <tr><td>Total questions</td><td>${N}</td></tr>
+      <tr><td>Answered</td><td>${answered}</td></tr>
+      <tr><td>Not answered</td><td>${notAns}</td></tr>
+      <tr><td>Marked for review (will be evaluated if answered)</td><td>${c.mk+c.am}</td></tr>
+      <tr><td>Not visited</td><td>${c.nv}</td></tr>
+    </table>
+    <div class="row"><button class="btn" id="mNo">Go back to test</button><button class="btn danger" id="mYes">Yes, submit</button></div>
+  </div></div>`;
+  $('#mNo').addEventListener('click',()=>ov.innerHTML='');
+  $('#mYes').addEventListener('click',()=>{ov.innerHTML='';doSubmit(false);});
+  $('#mNo').focus();
+}
+function doSubmit(auto){
+  if(S.submitted&&!auto)return;
+  clearInterval(tick);
+  $('#overlay').innerHTML='';
+  S.submitted=true;S.auto=!!auto;S.submitAt=Math.min(Date.now(),S.deadline);save();
+  renderResult();
+}
+
+/* ---------- results ---------- */
+let filter='all';
+function renderResult(){
+  const ev=Q.map(q=>({q,e:evalQ(q)}));
+  const ok=ev.filter(x=>x.e.st==='ok').length, bad=ev.filter(x=>x.e.st==='bad').length, un=N-ok-bad;
+  const score=ok*PAPER.plus+bad*PAPER.minus;S.score=score;save();
+  const attempted=ok+bad, acc=attempted?Math.round(ok/attempted*100):0;
+  const tm=Math.max(0,S.submitAt-S.startAt);
+  const secRows=PAPER.sections.map((s,i)=>{
+    const part=ev.filter(x=>secOf(x.q)===i);
+    const a=part.filter(x=>x.e.st==='ok').length,b=part.filter(x=>x.e.st==='bad').length;
+    return `<tr><td><b>${esc(s.name)}</b> <span class="topic">${esc(s.label)}</span></td><td>${part.length}</td><td>${a}</td><td>${b}</td><td>${part.length-a-b}</td><td><b>${a*PAPER.plus+b*PAPER.minus}</b> / ${part.length*PAPER.plus}</td></tr>`;}).join('');
+  vRes.innerHTML=`<div class="scroll"><div class="page">
+    <div class="topbar"><div class="ttl"><b>Test Analysis</b><span>${esc(PAPER.series)} &middot; ${esc(PAPER.title)}</span></div></div>
+    ${S.auto?`<div class="notice">Time is up. Your test was submitted automatically.</div>`:''}
+    <div class="card score">
+      <div class="bigscore"><small>Your score</small><div class="v">${score}<span> / ${TOTAL}</span></div></div>
+      <div class="stats">
+        <div class="stat ok"><b>${ok}</b><span>Correct (+${PAPER.plus} each)</span></div>
+        <div class="stat bad"><b>${bad}</b><span>Wrong (${PAPER.minus} each)</span></div>
+        <div class="stat un"><b>${un}</b><span>Unattempted</span></div>
+        <div class="stat"><b>${acc}%</b><span>Accuracy</span></div>
+        <div class="stat"><b>${fmt(tm)}</b><span>Time taken</span></div>
+      </div>
+    </div>
+    <div class="card"><div class="tablewrap"><table>
+      <thead><tr><th>Section</th><th>Questions</th><th>Correct</th><th>Wrong</th><th>Unattempted</th><th>Marks</th></tr></thead><tbody>${secRows}</tbody></table></div></div>
+    <div class="card">
+      <div class="filters" id="filters">
+        <button class="f" data-f="all">All (${N})</button><button class="f" data-f="ok">Correct (${ok})</button>
+        <button class="f" data-f="bad">Wrong (${bad})</button><button class="f" data-f="un">Unattempted (${un})</button>
+        <span class="hint">Click any question to open its solution.</span>
+      </div>
+      <div class="tablewrap"><table>
+        <thead><tr><th>Q</th><th class="hide-sm">Topic</th><th>Your answer</th><th>Correct answer</th><th>Marks</th><th></th></tr></thead>
+        <tbody id="qrows"></tbody></table></div>
+    </div>
+    <div class="resbar"><button class="btn primary" id="retake">Retake test</button><a class="btn" href="../index.html" style="text-decoration:none;display:inline-block">All papers</a></div>
+  </div></div>`;
+  show(vRes);
+  $('#filters').querySelectorAll('.f').forEach(b=>b.addEventListener('click',()=>{filter=b.dataset.f;drawRows(ev);}));
+  $('#retake').addEventListener('click',()=>{
+    S={started:false,startAt:0,deadline:0,cur:0,answers:{},marked:{},visited:{},submitted:false,submitAt:0,auto:false};
+    warned={};wipe();filter='all';vTest.innerHTML='';renderIntro();
+  });
+  drawRows(ev);
+  vRes.querySelector('.scroll').scrollTop=0;
+}
+function ansLabel(q,v){return v===undefined||v===''?'\u2014':(q.opts?v:v);}
+function drawRows(ev){
+  $('#filters').querySelectorAll('.f').forEach(b=>b.classList.toggle('on',b.dataset.f===filter));
+  const rows=ev.filter(x=>filter==='all'||x.e.st===filter);
+  const tb=$('#qrows');
+  tb.innerHTML=rows.length?rows.map(({q,e})=>{
+    const y=S.answers[q.n];
+    const mcls=e.m>0?'mk-pos':e.m<0?'mk-neg':'mk-zero';
+    return `<tr class="qrow" tabindex="0" role="button" aria-expanded="false" data-n="${q.n}">
+      <td><b>${q.n}</b></td><td class="hide-sm topic">${esc(q.topic)}</td>
+      <td><span class="ans ${e.st}">${esc(ansLabel(q,y))}</span></td>
+      <td><span class="ans key">${q.ans}</span></td>
+      <td class="${mcls}">${e.m>0?'+':e.m<0?'\u2212':''}${Math.abs(e.m)}</td>
+      <td class="open-ind">Solution &#9662;</td></tr>`;}).join(''):`<tr><td colspan="6" class="topic" style="padding:18px">No questions in this category.</td></tr>`;
+  tb.querySelectorAll('.qrow').forEach(tr=>{
+    const tog=()=>toggleSol(tr);
+    tr.addEventListener('click',tog);
+    tr.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();tog();}});
+  });
+}
+function toggleSol(tr){
+  const nxt=tr.nextElementSibling;
+  if(nxt&&nxt.classList.contains('solrow')){nxt.remove();tr.setAttribute('aria-expanded','false');tr.querySelector('.open-ind').innerHTML='Solution &#9662;';return;}
+  const q=Q[+tr.dataset.n-1], y=S.answers[q.n], e=evalQ(q);
+  let opts='';
+  if(q.opts){
+    opts=`<div class="mini-opts">`+q.opts.map((o,i)=>{
+      const L=LET[i];const c=L===q.ans,w=L===y&&!c;
+      return `<div class="${c?'c':w?'w':''}"><b>${L}</b><span>\\(${o}\\)</span>${c?'<span class="tag" style="color:var(--ok)">Correct</span>':w?'<span class="tag" style="color:var(--bad)">Your answer</span>':''}</div>`;}).join('')+`</div>`;
+  }
+  const verdict=e.st==='ok'?'You answered correctly.':e.st==='bad'?`You answered ${q.opts?'('+y+')':y}. The correct answer is ${q.opts?'('+q.ans+')':q.ans}.`:'You did not attempt this question.';
+  const tr2=document.createElement('tr');tr2.className='solrow';
+  tr2.innerHTML=`<td colspan="6"><div class="solbox sol">
+    <h5>Question ${q.n}</h5><div class="qtext">${q.q}</div>${opts}
+    <h5>Solution</h5>${q.sol}
+    <span class="finalans">Correct answer: ${q.opts?'('+q.ans+')':q.ans}</span>
+    <p style="margin:10px 0 0;color:var(--muted);font-size:13px">${verdict}</p></div></td>`;
+  tr.after(tr2);
+  tr.setAttribute('aria-expanded','true');tr.querySelector('.open-ind').innerHTML='Hide &#9652;';
+  typeset(tr2);
+}
+
+/* ---------- boot ---------- */
+window.addEventListener('beforeunload',e=>{if(S.started&&!S.submitted&&!vTest.hidden){e.preventDefault();e.returnValue='';}});
+load();
+if(S.started&&S.submitted){renderResult();}
+else if(S.started&&!S.submitted){
+  if(Date.now()>=S.deadline){S.submitted=true;S.auto=true;S.submitAt=S.deadline;save();renderResult();}
+  else{renderIntro();}
+}else{renderIntro();}
+})();
+</script>
+</body>
+</html>
