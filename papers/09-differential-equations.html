@@ -1,0 +1,812 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>JEE Differential Equations Mock Test</title>
+<link rel="icon" type="image/png" href="data:image/png;base64,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">
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+<style>
+/* Layout: NTA-style exam console. Top bar with timer, question pane on the left, question palette on the right. Intro and analysis are single scrolling pages. */
+:root{
+  --bg:#eef2f7; --panel:#ffffff; --fg:#17212e; --muted:#5b6878; --line:#d5dce6;
+  --brand:#1b4f8f; --brand-fg:#ffffff; --brand-soft:#e4edf8;
+  --nv-bg:#f1f3f6; --nv-fg:#3d4856;
+  --na:#d8412f; --an:#2a9448; --mk:#6a3fb5;
+  --ok:#1f8a3d; --ok-soft:#e1f3e6; --bad:#c7352b; --bad-soft:#fbe6e3; --warn:#9a6700; --warn-soft:#fff3d6;
+  --sel:#e4edf8; --focus:#1b4f8f;
+  --font:'Inter',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#10161f; --panel:#18212d; --fg:#e6ebf2; --muted:#9aa7b8; --line:#2c394a;
+  --brand:#5b9ae6; --brand-fg:#0b1523; --brand-soft:#1d2f47;
+  --nv-bg:#243142; --nv-fg:#c4cfdd;
+  --na:#e5594a; --an:#35ad57; --mk:#9269dc;
+  --ok:#4cc26d; --ok-soft:#183626; --bad:#f0766a; --bad-soft:#3b1f1d; --warn:#e8b84a; --warn-soft:#3a2f13;
+  --sel:#1d2f47; --focus:#7db1f2; color-scheme:dark;}}
+:root[data-theme="dark"]{
+  --bg:#10161f; --panel:#18212d; --fg:#e6ebf2; --muted:#9aa7b8; --line:#2c394a;
+  --brand:#5b9ae6; --brand-fg:#0b1523; --brand-soft:#1d2f47;
+  --nv-bg:#243142; --nv-fg:#c4cfdd;
+  --na:#e5594a; --an:#35ad57; --mk:#9269dc;
+  --ok:#4cc26d; --ok-soft:#183626; --bad:#f0766a; --bad-soft:#3b1f1d; --warn:#e8b84a; --warn-soft:#3a2f13;
+  --sel:#1d2f47; --focus:#7db1f2; color-scheme:dark;}
+
+[hidden]{display:none!important}
+*{box-sizing:border-box}
+html,body{height:100%}
+body{background:var(--bg);color:var(--fg);font-family:var(--font);font-size:15px;line-height:1.5;margin:0;
+  padding-block:0;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));
+  display:flex;flex-direction:column}
+button{font:inherit;color:inherit;cursor:pointer}
+:focus-visible{outline:3px solid var(--focus);outline-offset:2px}
+.num,.timer,table,.pal-btn{font-variant-numeric:tabular-nums}
+mjx-container{max-width:100%;overflow-x:auto;overflow-y:hidden}
+mjx-container[display="true"]{margin:.7em 0 !important}
+
+#app{flex:1;min-height:0;display:flex;flex-direction:column;padding-top:12px}
+.view{flex:1;min-height:0;display:flex;flex-direction:column}
+.credit{flex:none;text-align:center;font-size:11px;color:var(--muted);padding:8px 0 10px}
+
+/* top bar */
+.topbar{flex:none;display:flex;align-items:center;gap:12px;background:var(--brand);color:var(--brand-fg);border-radius:8px;padding:10px 16px;margin-bottom:12px;flex-wrap:wrap}
+.topbar .ttl{min-width:0;flex:1}
+.topbar .ttl b{display:block;font-size:15px;font-weight:700;letter-spacing:.01em}
+.topbar .ttl span{font-size:12px;opacity:.85}
+.timer-box{display:flex;align-items:center;gap:8px;background:rgba(255,255,255,.16);border-radius:6px;padding:6px 12px;font-size:13px}
+.timer{font-size:20px;font-weight:700;letter-spacing:.03em}
+.timer-box.low{background:#b7791f;color:#fff}
+.timer-box.crit{background:#c7352b;color:#fff}
+.palbtn{display:none;background:rgba(255,255,255,.16);border:0;border-radius:6px;color:inherit;padding:8px 12px;font-weight:600;font-size:13px}
+
+/* generic cards, buttons */
+.back{display:inline-block;margin-bottom:8px;font-size:13px;font-weight:600;color:var(--brand);text-decoration:none}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:8px}
+.btn{border:1px solid var(--line);background:var(--panel);color:var(--fg);border-radius:6px;padding:10px 16px;font-weight:600;font-size:14px;line-height:1.2}
+.btn:hover:not(:disabled){border-color:var(--brand)}
+.btn.primary{background:var(--brand);border-color:var(--brand);color:var(--brand-fg)}
+.btn.primary:hover:not(:disabled){filter:brightness(1.08)}
+.btn.review{background:var(--mk);border-color:var(--mk);color:#fff}
+.btn.danger{background:var(--na);border-color:var(--na);color:#fff}
+.btn:disabled{opacity:.45;cursor:not-allowed}
+
+/* ---------- intro ---------- */
+.scroll{flex:1;min-height:0;overflow:auto;padding-bottom:8px}
+.page{max-width:900px;margin:0 auto;display:flex;flex-direction:column;gap:14px}
+.hero{padding:20px 22px}
+.hero .eyebrow{font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--brand)}
+.hero h1{font-size:26px;line-height:1.2;margin:4px 0 12px;text-wrap:balance}
+.meta{display:flex;flex-wrap:wrap;gap:10px}
+.meta div{background:var(--brand-soft);border-radius:6px;padding:8px 14px;font-size:13px;color:var(--muted)}
+.meta b{display:block;color:var(--fg);font-size:16px}
+.sec{padding:18px 22px}
+.sec h2{font-size:16px;margin:0 0 10px}
+.sec ol,.sec ul{margin:0;padding-left:22px;display:flex;flex-direction:column;gap:7px}
+.legend-list{list-style:none !important;padding:0 !important}
+.legend-list li{display:flex;align-items:center;gap:12px}
+.start-row{padding:16px 22px;display:flex;flex-direction:column;gap:12px}
+.agree{display:flex;gap:10px;align-items:flex-start;font-size:14px;cursor:pointer}
+.agree input{margin-top:4px;width:18px;height:18px;flex:none}
+
+/* palette status symbols */
+.pal-btn{width:40px;height:40px;border:0;font-weight:600;font-size:14px;display:inline-flex;align-items:center;justify-content:center;position:relative}
+.s-nv{background:var(--nv-bg);color:var(--nv-fg);border:1px solid var(--line);border-radius:6px}
+.s-na{background:var(--na);color:#fff;border-radius:6px 6px 18px 18px}
+.s-an{background:var(--an);color:#fff;border-radius:18px 18px 6px 6px}
+.s-mk{background:var(--mk);color:#fff;border-radius:50%}
+.s-am{background:var(--mk);color:#fff;border-radius:50%}
+.s-am::after{content:"";position:absolute;right:-1px;bottom:-1px;width:13px;height:13px;border-radius:50%;background:var(--an);border:2px solid var(--panel)}
+.pal-btn.cur{box-shadow:0 0 0 3px var(--panel),0 0 0 5px var(--brand)}
+.sym{width:32px;height:32px;font-size:13px;flex:none;cursor:default}
+.sym.s-am::after{width:11px;height:11px}
+
+/* ---------- test ---------- */
+.testgrid{flex:1;min-height:0;display:grid;grid-template-columns:minmax(0,1fr) 316px;gap:14px}
+.qpane{min-height:0;display:flex;flex-direction:column;min-width:0}
+.sectabs{flex:none;display:flex;gap:6px;flex-wrap:wrap;margin-bottom:10px}
+.sectab{border:1px solid var(--line);background:var(--panel);border-radius:6px;padding:7px 14px;font-weight:600;font-size:13px;color:var(--muted)}
+.sectab.on{background:var(--brand-soft);border-color:var(--brand);color:var(--brand)}
+.qcard{flex:1;min-height:0;display:flex;flex-direction:column;overflow:hidden}
+.qhead{flex:none;display:flex;align-items:center;gap:10px;flex-wrap:wrap;padding:10px 18px;border-bottom:1px solid var(--line)}
+.qhead .qn{font-weight:700;font-size:16px}
+.chip{font-size:12px;font-weight:600;border-radius:99px;padding:3px 10px;background:var(--brand-soft);color:var(--brand)}
+.chip.plus{background:var(--ok-soft);color:var(--ok)}
+.chip.minus{background:var(--bad-soft);color:var(--bad)}
+.qhead .sp{flex:1}
+.qbody{flex:1;min-height:0;overflow:auto;padding:16px 18px 20px}
+.qhint{font-size:13px;color:var(--muted);margin:0 0 12px}
+.qtext{font-size:17px;line-height:1.65;margin-bottom:16px}
+.opts{display:flex;flex-direction:column;gap:10px}
+.opt{display:flex;align-items:center;gap:12px;border:1.5px solid var(--line);border-radius:8px;padding:10px 14px;cursor:pointer;background:var(--panel);min-width:0}
+.opt:hover{border-color:var(--brand)}
+.opt:has(input:checked){background:var(--sel);border-color:var(--brand)}
+.opt input{width:18px;height:18px;flex:none;accent-color:var(--brand)}
+.ol{font-weight:700;color:var(--muted);width:20px;flex:none}
+.ot{font-size:16.5px;min-width:0;overflow-x:auto}
+.numwrap{max-width:320px;display:flex;flex-direction:column;gap:10px}
+.numwrap label{font-weight:600;font-size:14px}
+.numin{font:inherit;font-size:22px;font-weight:600;padding:10px 14px;border:1.5px solid var(--line);border-radius:8px;background:var(--panel);color:var(--fg);width:100%;letter-spacing:.06em}
+.keys{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.key{padding:12px 0;border:1px solid var(--line);background:var(--bg);border-radius:6px;font-size:18px;font-weight:600}
+.key:hover{border-color:var(--brand)}
+.key.w2{grid-column:span 2;font-size:14px}
+.actions{flex:none;display:flex;flex-wrap:wrap;gap:8px;justify-content:space-between;margin-top:10px;padding:10px 12px;background:var(--panel);border:1px solid var(--line);border-radius:8px}
+.actions .grp{display:flex;gap:8px;flex-wrap:wrap}
+.savehint{flex:none;font-size:12px;color:var(--muted);margin:6px 2px 0;min-height:18px}
+
+/* palette */
+.pal{min-height:0;display:flex;flex-direction:column;overflow:hidden}
+.pal h3{flex:none;margin:0;padding:12px 16px;font-size:14px;border-bottom:1px solid var(--line)}
+.pal-scroll{flex:1;min-height:0;overflow:auto;padding:12px 16px}
+.legend{display:grid;grid-template-columns:1fr 1fr;gap:10px 8px;font-size:12px;color:var(--muted);margin-bottom:14px}
+.legend div{display:flex;align-items:center;gap:8px;line-height:1.25}
+.pgroup{margin-bottom:14px}
+.pgroup h4{margin:0 0 8px;font-size:12px;letter-spacing:.05em;text-transform:uppercase;color:var(--muted)}
+.pgrid{display:grid;grid-template-columns:repeat(5,40px);gap:10px;justify-content:space-between}
+.pal-foot{flex:none;padding:12px 16px;border-top:1px solid var(--line)}
+.pal-foot .btn{width:100%}
+.backdrop{display:none}
+
+/* modal and toast */
+.modal{position:fixed;inset:0;background:rgba(10,20,35,.55);display:flex;align-items:center;justify-content:center;padding:16px;z-index:50}
+.modal .box{max-width:460px;width:100%;padding:22px;max-height:90%;overflow:auto}
+.modal h2{margin:0 0 6px;font-size:18px}
+.modal p{margin:0 0 12px;color:var(--muted)}
+.sumtab{width:100%;border-collapse:collapse;margin-bottom:16px;font-size:14px}
+.sumtab td{padding:7px 4px;border-bottom:1px solid var(--line)}
+.sumtab td:last-child{text-align:right;font-weight:700}
+.modal .row{display:flex;gap:10px;justify-content:flex-end;flex-wrap:wrap}
+.toast{position:fixed;left:50%;bottom:calc(48px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:#17212e;color:#fff;padding:10px 18px;border-radius:8px;font-size:14px;z-index:60;max-width:90%;text-align:center}
+
+/* ---------- result ---------- */
+.score{padding:22px;display:flex;flex-wrap:wrap;gap:20px;align-items:center}
+.bigscore{min-width:170px}
+.bigscore small{display:block;font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);font-weight:600}
+.bigscore .v{font-size:46px;font-weight:700;line-height:1.1}
+.bigscore .v span{font-size:20px;color:var(--muted);font-weight:500}
+.stats{flex:1;min-width:260px;display:grid;grid-template-columns:repeat(auto-fit,minmax(110px,1fr));gap:10px}
+.stat{border-radius:8px;padding:10px 12px;background:var(--bg)}
+.stat b{display:block;font-size:22px}
+.stat span{font-size:12px;color:var(--muted)}
+.stat.ok b{color:var(--ok)} .stat.bad b{color:var(--bad)} .stat.un b{color:var(--muted)}
+.notice{background:var(--warn-soft);color:var(--warn);border-radius:8px;padding:10px 14px;font-size:14px;font-weight:600}
+.tablewrap{overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-size:14px}
+th{text-align:left;font-size:12px;letter-spacing:.04em;text-transform:uppercase;color:var(--muted);padding:10px 12px;border-bottom:1px solid var(--line);white-space:nowrap}
+td{padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:middle}
+tr.qrow{cursor:pointer}
+tr.qrow:hover td{background:var(--bg)}
+tr.qrow:focus-visible{outline:3px solid var(--focus);outline-offset:-3px}
+.ans{display:inline-block;min-width:44px;text-align:center;font-weight:700;border-radius:6px;padding:3px 10px}
+.ans.ok{background:var(--ok-soft);color:var(--ok)}
+.ans.bad{background:var(--bad-soft);color:var(--bad)}
+.ans.un{background:var(--nv-bg);color:var(--muted)}
+.ans.key{background:var(--ok-soft);color:var(--ok);padding:3px 10px;border:0;font-size:inherit}
+.mk-pos{color:var(--ok);font-weight:700}.mk-neg{color:var(--bad);font-weight:700}.mk-zero{color:var(--muted);font-weight:700}
+.topic{color:var(--muted);font-size:13px}
+.open-ind{color:var(--brand);font-weight:600;white-space:nowrap;font-size:13px}
+tr.solrow td{background:var(--bg);padding:16px 18px}
+.solbox{max-width:820px}
+.solbox h5{margin:14px 0 6px;font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.solbox .qtext{font-size:15.5px;margin-bottom:10px}
+.mini-opts{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:8px;margin-bottom:6px}
+.mini-opts div{display:flex;gap:8px;align-items:center;border:1px solid var(--line);border-radius:6px;padding:6px 10px;background:var(--panel);min-width:0;font-size:15px}
+.mini-opts div.c{border-color:var(--ok);background:var(--ok-soft)}
+.mini-opts div.w{border-color:var(--bad);background:var(--bad-soft)}
+.mini-opts .tag{margin-left:auto;font-size:11px;font-weight:700;white-space:nowrap}
+.idea{background:var(--brand-soft);border-radius:6px;padding:8px 12px;font-size:14px;margin:0 0 10px}
+.trap{background:var(--warn-soft);color:var(--warn);border-radius:6px;padding:8px 12px;font-size:14px;margin:10px 0 0}
+.finalans{display:inline-block;margin-top:8px;background:var(--ok-soft);color:var(--ok);font-weight:700;border-radius:6px;padding:5px 12px}
+.sol p{margin:0 0 8px}
+.filters{display:flex;gap:8px;flex-wrap:wrap;padding:12px 16px;border-bottom:1px solid var(--line);align-items:center}
+.filters .f{border:1px solid var(--line);background:var(--panel);border-radius:99px;padding:5px 14px;font-size:13px;font-weight:600;color:var(--muted)}
+.filters .f.on{background:var(--brand);border-color:var(--brand);color:var(--brand-fg)}
+.filters .hint{margin-left:auto;font-size:12px;color:var(--muted)}
+.resbar{display:flex;gap:10px;flex-wrap:wrap}
+
+@media (max-width:900px){
+  .testgrid{grid-template-columns:minmax(0,1fr)}
+  .palbtn{display:inline-block}
+  .pal{position:fixed;top:env(safe-area-inset-top,0px);bottom:0;right:0;width:min(340px,92vw);z-index:40;transform:translateX(105%);transition:transform .2s;border-radius:8px 0 0 8px;padding-bottom:env(safe-area-inset-bottom,0px)}
+  .pal.open{transform:none}
+  .backdrop.show{display:block;position:fixed;inset:0;background:rgba(10,20,35,.5);z-index:35}
+  .hide-sm{display:none}
+  .qtext{font-size:16px}
+  .hero h1{font-size:22px}
+}
+@media (max-width:520px){
+  .actions .btn{padding:10px 12px;font-size:13px}
+  .actions .grp{width:100%}
+  .actions .grp .btn{flex:1}
+}
+@media (prefers-reduced-motion:reduce){.pal{transition:none}}
+</style>
+
+</head>
+<body>
+<div id="app">
+  <section id="v-intro" class="view" hidden></section>
+  <section id="v-test" class="view" hidden></section>
+  <section id="v-result" class="view" hidden></section>
+</div>
+<footer class="credit">Created by Dhairya Chandak.</footer>
+<div id="overlay"></div>
+<div id="toast" class="toast" hidden></div>
+
+<script>
+/* Math rendering. SVG output needs no external stylesheet or fonts. */
+window.MathJax={tex:{inlineMath:[['\\(','\\)']],displayMath:[['\\[','\\]']]},svg:{fontCache:'local'},startup:{typeset:false}};
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-svg.min.js"></script>
+
+<!-- ===================== PAPER DATA (replace this block for a new paper) ===================== -->
+<script id="paper-data">
+const r=String.raw;
+const PAPER={
+  id:'jee-main-differential-equations-09',
+  series:'JEE Main Revision Series',
+  title:'Chapter 9: Differential Equations',
+  subject:'Class XII Mathematics',
+  durationMin:60,
+  plus:4, minus:-1,
+  notation:r`Throughout this paper, \(y'=\frac{dy}{dx}\), \(y''=\frac{d^2y}{dx^2}\) and so on. \(\ln\) denotes the natural logarithm.`,
+  sections:[
+    {name:'Section A',label:'Single-Correct MCQ',type:'mcq',from:1,to:20,
+      rule:'Each question has four options (A), (B), (C) and (D), out of which ONLY ONE is correct. +4 for a correct answer, \u22121 for an incorrect answer, 0 if unattempted.'},
+    {name:'Section B',label:'Numerical Value',type:'num',from:21,to:25,
+      rule:'The answer to each question is a non-negative integer. Enter it using the on-screen keypad or your keyboard. +4 for the correct integer, \u22121 for an incorrect answer, 0 if unattempted.'}
+  ],
+  questions:[
+  {n:1,topic:'Order and degree (radical clearing, non-polynomial)',
+   q:r`Consider the following two differential equations: \[\text{(I)}\ \left(\frac{d^2y}{dx^2}\right)^{2/3}=\left(1+\left(\frac{dy}{dx}\right)^2\right)^{1/2},\qquad\text{(II)}\ \frac{d^3y}{dx^3}+3\frac{d^2y}{dx^2}+\cos\!\left(\frac{dy}{dx}\right)=0.\] If \(p\) and \(q\) are the order and degree of (I), respectively, and \(r\) is the order of (II), then which of the following statements is <b>TRUE</b>?`,
+   opts:[r`p+q=5\text{ and degree of (II) is }1`,r`p+q=6,\ r=3,\text{ and degree of (II) is not defined}`,r`p+q=5,\ r=3,\text{ and degree of (II) is not defined}`,r`p+q=6,\ r=3,\text{ and degree of (II) is }1`],ans:'B',
+   sol:r`<p class="idea">Clear all fractional powers of derivatives first. A transcendental function of a derivative makes the degree undefined.</p>
+<p>For (I), the LCM of the denominators 3 and 2 is 6. Raising both sides to the 6th power: \[\left(\frac{d^2y}{dx^2}\right)^4=\left(1+\left(\frac{dy}{dx}\right)^2\right)^3.\] The highest-order derivative is \(y''\) (order \(p=2\)) with exponent \(q=4\), so \(p+q=6\).</p>
+<p>For (II), the highest derivative is \(y'''\), so \(r=3\). Because \(\cos(y')\) is not a polynomial in derivatives, the degree of (II) is <b>not defined</b>.</p>
+<div class="trap"><b>Trap:</b> raise to the power 6, not just 2 or 3, so no fractional power is left on either side.</div>`},
+
+  {n:2,topic:'Formation of a differential equation (independent constants)',
+   q:r`The minimum order of the differential equation representing the family of curves \[y=c_1e^{x+c_2}+c_3\sin(x+c_4)+c_5\cos(x+c_6)+\ln\!\left(c_7e^{2x}\right),\] where \(c_1,c_2,\ldots,c_7\) are arbitrary real constants (\(c_7\gt0\)), is:`,
+   opts:['7','5','4','3'],ans:'C',
+   sol:r`<p class="idea">Collapse redundant parameters with identities, then count the independent constants.</p>
+<p>\(c_1e^{x+c_2}=(c_1e^{c_2})e^x=Ae^x\). \(c_3\sin(x+c_4)+c_5\cos(x+c_6)=B\sin x+C\cos x\) (expand and collect). \(\ln(c_7e^{2x})=\ln c_7+2x=D+2x\).</p>
+<p>So \(y=Ae^x+B\sin x+C\cos x+D+2x\). The functions \(e^x,\sin x,\cos x,1\) are linearly independent, and \(2x\) carries no constant. There are exactly 4 independent constants, so the minimum order is 4.</p>
+<div class="trap"><b>Trap:</b> always expand \(\sin(x+\phi)\) first. Any number of phase-shifted sinusoids of the same frequency collapse into at most two independent constants.</div>`},
+
+  {n:3,topic:'Variable separable (product-rule recognition)',
+   q:r`Let \(y=y(x)\) (\(y\gt0\)) be the solution of the differential equation \[\frac{dy}{dx}=\frac{e^x\left(\sin^2x+\sin2x\right)}{y(2\ln y+1)},\qquad y(0)=1.\] Then at \(x=\dfrac\pi2\), the value of \(y^2\ln y\) is:`,
+   opts:[r`e^{\pi/2}`,r`2e^{\pi/2}`,r`e^{\pi/2}-1`,r`\tfrac12e^{\pi/2}`],ans:'A',
+   sol:r`<p class="idea">Separate variables and spot the exact derivatives \(\frac d{dy}(y^2\ln y)\) and \(\frac d{dx}(e^x\sin^2x)\).</p>
+<p>\(y(2\ln y+1)\,dy=e^x(\sin^2x+\sin2x)\,dx\). Since \(\frac d{dy}(y^2\ln y)=2y\ln y+y\) and \(\frac d{dx}(\sin^2x)=\sin2x\), the template \(\int e^x(g+g')dx=e^xg\) gives \[y^2\ln y=e^x\sin^2x+C.\] From \(y(0)=1\): \(0=0+C\Rightarrow C=0\). At \(x=\tfrac\pi2\): \(y^2\ln y=e^{\pi/2}\).</p>`},
+
+  {n:4,topic:'Reducible to variable separable (ax + by + c)',
+   q:r`If \(y=y(x)\) satisfies the differential equation \[\frac{dy}{dx}=\cos^2(x+y+1)-1,\qquad y(0)=-1,\] then the value of \(y(1)\) is:`,
+   opts:[r`\dfrac\pi4-1`,r`\dfrac\pi2-2`,r`-\dfrac\pi4-2`,r`\dfrac\pi4-2`],ans:'D',
+   sol:r`<p class="idea">Let \(u=x+y+1\), so \(1+\frac{dy}{dx}=\frac{du}{dx}\) cancels the \(-1\) directly.</p>
+<p>\(\frac{du}{dx}=1+\frac{dy}{dx}=\cos^2u\Rightarrow\sec^2u\,du=dx\Rightarrow\tan u=x+C\). With \(y(0)=-1\): \(u=0\Rightarrow C=0\).</p>
+<p>So \(x+y+1=\tan^{-1}x\), \(y=\tan^{-1}x-x-1\), and \(y(1)=\tfrac\pi4-2\).</p>`},
+
+  {n:5,topic:'Homogeneous differential equation (y = vx) with IVP',
+   q:r`Let \(y=y(x)\) be the solution of the differential equation \[x\frac{dy}{dx}=y+\sqrt{x^2+y^2}\quad(x\gt0),\qquad y(1)=\frac34.\] Then the value of \(y(2)\) is:`,
+   opts:[r`\dfrac{17}4`,r`\dfrac{15}4`,r`\dfrac{13}4`,r`\dfrac94`],ans:'B',
+   sol:r`<p class="idea">Put \(y=vx\) for \(x\gt0\) and use \(\int\frac{dv}{\sqrt{1+v^2}}=\ln\left(v+\sqrt{1+v^2}\right)\).</p>
+<p>\(v+x\frac{dv}{dx}=v+\sqrt{1+v^2}\Rightarrow\frac{dv}{\sqrt{1+v^2}}=\frac{dx}x\Rightarrow v+\sqrt{1+v^2}=Cx\). At \(x=1\): \(v=\tfrac34,\ \sqrt{1+v^2}=\tfrac54\), so \(C=2\).</p>
+<p>Substituting \(v=y/x\): \(\frac{y+\sqrt{x^2+y^2}}x=2x\Rightarrow\sqrt{x^2+y^2}=2x^2-y\). Squaring gives \(4x^2y=4x^4-x^2\Rightarrow y=x^2-\tfrac14\) (valid since \(2x^2-y\gt0\)). Hence \(y(2)=4-\tfrac14=\tfrac{15}4\).</p>`},
+
+  {n:6,topic:'Reducible to homogeneous (axis shift)',
+   q:r`The implicit equation of the solution curve of the differential equation \[\frac{dy}{dx}=\frac{x+y-3}{x-y-1}\quad(x\gt2)\] passing through the point \((3,1)\) is:`,
+   opts:[r`\ln\!\left((x-2)^2+(y-1)^2\right)=2\tan^{-1}\!\left(\frac{y-1}{x-2}\right)`,r`\ln\!\left((x-2)^2+(y-1)^2\right)=\tan^{-1}\!\left(\frac{y-1}{x-2}\right)`,r`\ln\!\left((x-1)^2+(y-2)^2\right)=2\tan^{-1}\!\left(\frac{y-2}{x-1}\right)`,r`\ln\!\left((x-2)^2+(y-1)^2\right)=-2\tan^{-1}\!\left(\frac{y-1}{x-2}\right)`],ans:'A',
+   sol:r`<p class="idea">Shift the origin to the intersection of the numerator and denominator lines.</p>
+<p>Solving \(h+k-3=0,\ h-k-1=0\) gives \((h,k)=(2,1)\). Let \(X=x-2,\ Y=y-1\): \(\frac{dY}{dX}=\frac{X+Y}{X-Y}\Rightarrow X\,dY-Y\,dX=X\,dX+Y\,dY\).</p>
+<p>Dividing by \(X^2+Y^2\): \(d\left(\tan^{-1}\tfrac YX\right)=\tfrac12d\left(\ln(X^2+Y^2)\right)\), so \(\ln(X^2+Y^2)=2\tan^{-1}\tfrac YX+C\). At \((3,1)\): \((X,Y)=(1,0)\Rightarrow C=0\).</p>
+<p>Hence \(\ln\left((x-2)^2+(y-1)^2\right)=2\tan^{-1}\left(\frac{y-1}{x-2}\right)\).</p>`},
+
+  {n:7,topic:'Linear differential equation in y (integrating factor)',
+   q:r`Let \(y=y(x)\) be the solution of the differential equation \[\frac{dy}{dx}+y\cot x=4x\csc x,\qquad x\in(0,\pi),\] satisfying \(y\!\left(\frac\pi2\right)=0\). Then the value of \(y\!\left(\frac\pi6\right)\) is:`,
+   opts:[r`-\dfrac{4\pi^2}{9}`,r`\dfrac{8\pi^2}{9}`,r`-\dfrac{8\pi^2}{9}`,r`-\dfrac{2\pi^2}{9}`],ans:'C',
+   sol:r`<p class="idea">The integrating factor is \(e^{\int\cot x\,dx}=\sin x\) on \((0,\pi)\).</p>
+<p>\(\frac d{dx}(y\sin x)=4x\csc x\cdot\sin x=4x\Rightarrow y\sin x=2x^2+C\). From \(y(\tfrac\pi2)=0\): \(C=-\tfrac{\pi^2}2\). So \(y=\frac{2x^2-\pi^2/2}{\sin x}\).</p>
+<p>At \(x=\tfrac\pi6\) (\(\sin=\tfrac12\)): \(y=2\left(\tfrac{2\pi^2}{36}-\tfrac{\pi^2}2\right)=2\left(-\tfrac{4\pi^2}9\right)=-\tfrac{8\pi^2}9\).</p>
+<div class="trap"><b>Trap:</b> forgetting to divide by \(\sin\tfrac\pi6=\tfrac12\) leads to the distractor \(-\tfrac{4\pi^2}9\).</div>`},
+
+  {n:8,topic:'Hidden linear differential equation in x',
+   q:r`A curve \(x=x(y)\) (\(y\gt0\)) passing through the point \((1,1)\) satisfies the differential equation \[\frac{dy}{dx}=\frac{y^2}{2-xy-3y^3}.\] Then the value of \(x\) when \(y=e\) is:`,
+   opts:[r`\dfrac{2-e^3}{e}`,r`\dfrac{4+e^3}{e}`,r`\dfrac{2+e^3}{e}`,r`\dfrac{4-e^3}{e}`],ans:'D',
+   sol:r`<p class="idea">Invert \(\frac{dy}{dx}\) to get \(\frac{dx}{dy}+P(y)x=Q(y)\), which is linear in \(x\).</p>
+<p>\(\frac{dx}{dy}=\frac{2-xy-3y^3}{y^2}\Rightarrow\frac{dx}{dy}+\frac1yx=\frac2{y^2}-3y\). The integrating factor is \(e^{\int dy/y}=y\): \[\frac d{dy}(xy)=\frac2y-3y^2\Rightarrow xy=2\ln y-y^3+C.\] At \((1,1)\): \(1=0-1+C\Rightarrow C=2\).</p>
+<p>At \(y=e\): \(xe=2-e^3+2=4-e^3\), so \(x=\frac{4-e^3}e\).</p>`},
+
+  {n:9,topic:"Bernoulli's differential equation",
+   q:r`Let \(y=y(x)\) (\(y\gt0\)) be the solution of the differential equation \[x\frac{dy}{dx}+y=x^2y^3\quad(x\gt0),\qquad y(1)=1.\] Then the value of \(y\!\left(e^{-1/2}\right)\) is:`,
+   opts:[r`\sqrt{\dfrac e2}`,r`\sqrt{\dfrac2e}`,r`\dfrac{e}{\sqrt2}`,r`\dfrac1{\sqrt{2e}}`],ans:'A',
+   sol:r`<p class="idea">Divide by \(xy^3\) and substitute \(u=y^{-2}\) to get a linear equation.</p>
+<p>\(y^{-3}y'+\frac1xy^{-2}=x\). With \(u=y^{-2}\), \(u'=-2y^{-3}y'\): \(-\tfrac12u'+\tfrac1xu=x\Rightarrow u'-\tfrac2xu=-2x\). The integrating factor is \(x^{-2}\): \(\frac d{dx}\left(\frac u{x^2}\right)=-\frac2x\Rightarrow\frac1{x^2y^2}=C-2\ln x\).</p>
+<p>From \(y(1)=1\): \(C=1\). So \(y=\frac1{x\sqrt{1-2\ln x}}\). At \(x=e^{-1/2}\): \(y=\frac{e^{1/2}}{\sqrt{1+1}}=\sqrt{\tfrac e2}\).</p>`},
+
+  {n:10,topic:'Reducible to linear via substitution t = tan y',
+   q:r`Let \(y=y(x)\) satisfy the differential equation \[\sec^2y\,\frac{dy}{dx}+2x\tan y=x^3,\qquad y(0)=0.\] Then the value of \(\tan(y(1))\) is:`,
+   opts:[r`\dfrac1e`,r`\dfrac{e-1}{2e}`,r`\dfrac1{2e}`,r`\dfrac{e+1}{2e}`],ans:'C',
+   sol:r`<p class="idea">Spot the pair \(\tan y,\ \sec^2y\,y'\) and substitute \(t=\tan y\).</p>
+<p>\(\frac{dt}{dx}+2xt=x^3\), \(t(0)=0\). The integrating factor is \(e^{x^2}\): \(\frac d{dx}\left(te^{x^2}\right)=x^3e^{x^2}\). With \(w=x^2\): \(\int x^3e^{x^2}dx=\tfrac12\int we^wdw=\tfrac12(x^2-1)e^{x^2}+C\).</p>
+<p>So \(t=\frac{x^2-1}2+Ce^{-x^2}\). From \(t(0)=0\): \(C=\tfrac12\). Then \(\tan y(1)=\frac{1-1+e^{-1}}2=\frac1{2e}\).</p>`},
+
+  {n:11,topic:'Exact differential equation (inspection grouping)',
+   q:r`A curve passing through \((1,1)\) in the first quadrant satisfies the differential equation \[\left(y+\frac{y}{x^2+y^2}\right)dx+\left(x-\frac{x}{x^2+y^2}\right)dy=0.\] At the point on this curve where \(y=\sqrt3\,x\) (\(x\gt0\)), the value of the product \(xy\) is:`,
+   opts:[r`1-\dfrac\pi{12}`,r`1+\dfrac\pi{12}`,r`1+\dfrac{7\pi}{12}`,r`1+\dfrac\pi6`],ans:'B',
+   sol:r`<p class="idea">Regroup into exact differentials \(d(xy)\) and \(d\left(\tan^{-1}\frac yx\right)\).</p>
+<p>\((y\,dx+x\,dy)-\frac{x\,dy-y\,dx}{x^2+y^2}=0\Rightarrow d(xy)-d\left(\tan^{-1}\tfrac yx\right)=0\Rightarrow xy-\tan^{-1}\tfrac yx=C\).</p>
+<p>At \((1,1)\): \(C=1-\tfrac\pi4\). When \(y=\sqrt3x\), \(\tan^{-1}\sqrt3=\tfrac\pi3\), so \(xy=1-\tfrac\pi4+\tfrac\pi3=1+\tfrac\pi{12}\).</p>`},
+
+  {n:12,topic:'Polar-coordinate exact grouping',
+   q:r`The Cartesian equation of the solution curve passing through \((1,0)\) in the first quadrant for the differential equation \[\frac{x\,dx+y\,dy}{x\,dy-y\,dx}=\sqrt{\frac{4-x^2-y^2}{x^2+y^2}}\] is:`,
+   opts:[r`x^2+y^2=\sqrt3\,x+y`,r`x^2+y^2=2x+2\sqrt3\,y`,r`x^2+y^2=x-\sqrt3\,y`,r`x^2+y^2=x+\sqrt3\,y`],ans:'D',
+   sol:r`<p class="idea">With \(x=r\cos\theta,\ y=r\sin\theta\): \(x\,dx+y\,dy=r\,dr\) and \(x\,dy-y\,dx=r^2d\theta\).</p>
+<p>\(\frac{r\,dr}{r^2d\theta}=\frac{\sqrt{4-r^2}}r\Rightarrow\frac{dr}{\sqrt{4-r^2}}=d\theta\Rightarrow\sin^{-1}\tfrac r2=\theta+C\).</p>
+<p>At \((1,0)\): \(r=1,\theta=0\Rightarrow C=\tfrac\pi6\). So \(r=2\sin\left(\theta+\tfrac\pi6\right)=\sqrt3\sin\theta+\cos\theta\). Multiplying by \(r\): \(x^2+y^2=x+\sqrt3\,y\).</p>`},
+
+  {n:13,topic:'Orthogonal trajectories of a family of circles',
+   q:r`The orthogonal trajectory of the family of circles \(x^2+y^2-2ax=0\) (\(a\in\mathbb R\setminus\{0\}\)) that passes through the point \((1,1)\) is:`,
+   opts:[r`x^2+y^2-2y=0`,r`x^2+y^2-2x=0`,r`x^2+y^2+2y=0`,r`x^2-y^2=0`],ans:'A',
+   sol:r`<p class="idea">Eliminate \(a\), replace \(y'\) by \(-1/y'\), and solve.</p>
+<p>\(2a=\frac{x^2+y^2}x\). Differentiating \(x^2+y^2-2ax=0\): \(2x+2yy'-2a=0\Rightarrow2xyy'=y^2-x^2\Rightarrow\frac{dy}{dx}=\frac{y^2-x^2}{2xy}\).</p>
+<p>Orthogonal trajectories: \(\frac{dy}{dx}=\frac{2xy}{x^2-y^2}\). By the \(x\leftrightarrow y\) symmetry, the solution is \(x^2+y^2-2by=0\). Through \((1,1)\): \(2-2b=0\Rightarrow b=1\), giving \(x^2+y^2-2y=0\).</p>`},
+
+  {n:14,topic:'Geometrical application (tangent-intercept ratio)',
+   q:r`A curve \(y=f(x)\) lies in the first quadrant and passes through \((1,2)\). At any point \(P(x,y)\) on the curve, the tangent meets the \(x\)-axis at \(T\) and the \(y\)-axis at \(S\) such that \(P\) divides the segment \(TS\) internally in the ratio \(TP:PS=2:1\). Then \(f(16)\) equals:`,
+   opts:[r`\dfrac14`,r`\dfrac12`,r`\dfrac18`,'1'],ans:'B',
+   sol:r`<p class="idea">Write the intercepts of the tangent and apply the internal section formula.</p>
+<p>Tangent: \(Y-y=y'(X-x)\), so \(T=\left(x-\frac y{y'},0\right)\) and \(S=(0,\,y-xy')\). Since \(TP:PS=2:1\), \(x=\frac{2(0)+1\cdot\left(x-\frac y{y'}\right)}3\Rightarrow3x=x-\frac y{y'}\Rightarrow2x\,y'+y=0\).</p>
+<p>\(\frac{dy}y=-\frac{dx}{2x}\Rightarrow y\sqrt x=C\). With \(f(1)=2\): \(C=2\), so \(f(x)=\frac2{\sqrt x}\) and \(f(16)=\tfrac12\).</p>`},
+
+  {n:15,topic:'Integral equation to ODE (Newton-Leibniz)',
+   q:r`Let \(f:(0,\infty)\to\mathbb R\) be a differentiable function satisfying the integral equation \[f(x)=x+\frac2x\int_1^xf(t)\,dt\qquad\forall x\gt0.\] Then the value of \(f(e)\) is:`,
+   opts:[r`e`,r`2e`,r`3e`,r`e^2`],ans:'C',
+   sol:r`<p class="idea">Multiply by \(x\) to isolate the integral, read the initial condition at \(x=1\), then differentiate.</p>
+<p>\(xf(x)=x^2+2\int_1^xf(t)dt\). At \(x=1\): \(f(1)=1\). Differentiating: \(f+xf'=2x+2f\Rightarrow xf'-f=2x\Rightarrow\frac d{dx}\left(\frac fx\right)=\frac2x\Rightarrow\frac fx=2\ln x+C\).</p>
+<p>From \(f(1)=1\): \(C=1\). So \(f(x)=x(1+2\ln x)\) and \(f(e)=3e\).</p>`},
+
+  {n:16,topic:'Functional equation differentiated to a linear ODE',
+   q:r`Let \(f:\mathbb R\to\mathbb R\) be a differentiable function satisfying \[f(x+y)=e^yf(x)+e^xf(y)\qquad\forall x,y\in\mathbb R,\] with \(f'(0)=2\). Then the value of \(f(2)\) is:`,
+   opts:[r`2e^2`,r`e^2`,r`2e`,r`4e^2`],ans:'D',
+   sol:r`<p class="idea">Find \(f(0)\), differentiate with respect to \(y\), then set \(y=0\).</p>
+<p>\(x=y=0\): \(f(0)=2f(0)\Rightarrow f(0)=0\). Differentiating in \(y\): \(f'(x+y)=e^yf(x)+e^xf'(y)\). Setting \(y=0\): \(f'(x)=f(x)+2e^x\Rightarrow f'-f=2e^x\).</p>
+<p>\(\frac d{dx}\left(e^{-x}f\right)=2\Rightarrow e^{-x}f=2x+C\). With \(f(0)=0\): \(C=0\), so \(f(x)=2xe^x\) and \(f(2)=4e^2\).</p>`},
+
+  {n:17,topic:"Clairaut's equation and singular solution (envelope)",
+   q:r`Consider the Clairaut differential equation \[y=x\frac{dy}{dx}+\frac{4}{\frac{dy}{dx}},\qquad\left(\frac{dy}{dx}\ne0\right).\] Its singular solution (the envelope of its family of straight-line solutions) represents a parabola whose latus rectum has length:`,
+   opts:['16','8','4','32'],ans:'A',
+   sol:r`<p class="idea">Let \(p=y'\). Differentiate \(y=xp+\tfrac4p\) and factor out \(\frac{dp}{dx}\).</p>
+<p>\(p=p+x\frac{dp}{dx}-\frac4{p^2}\frac{dp}{dx}\Rightarrow\left(x-\frac4{p^2}\right)\frac{dp}{dx}=0\). The factor \(\frac{dp}{dx}=0\) gives the general solution \(y=cx+\tfrac4c\). The other factor gives \(x=\tfrac4{p^2}\Rightarrow p=\pm\tfrac2{\sqrt x}\).</p>
+<p>Substituting: \(y=\pm2\sqrt x\pm2\sqrt x=\pm4\sqrt x\Rightarrow y^2=16x\). Comparing with \(y^2=4ax\): latus rectum \(=4a=16\).</p>`},
+
+  {n:18,topic:'Mixing tank linear ODE word problem',
+   q:r`A tank initially contains 100 L of pure water. Brine containing 2 kg/L of salt enters the tank at a constant rate of 5 L/min, and the well-stirred mixture flows out at the same rate of 5 L/min. The time \(t\) (in minutes) required for the tank to contain 150 kg of salt is:`,
+   opts:[r`20\ln2`,r`40\ln2`,r`20\ln3`,r`40\ln3`],ans:'B',
+   sol:r`<p class="idea">Model \(\frac{dS}{dt}=\) rate in \(-\) rate out, with the volume constant at 100 L.</p>
+<p>Rate in \(=2\times5=10\) kg/min; rate out \(=\frac S{100}\times5=\frac S{20}\). So \(\frac{dS}{dt}+\frac S{20}=10\), \(S(0)=0\). With integrating factor \(e^{t/20}\): \(Se^{t/20}=200e^{t/20}+C\), and \(C=-200\), so \(S=200\left(1-e^{-t/20}\right)\).</p>
+<p>\(S=150\Rightarrow1-e^{-t/20}=\tfrac34\Rightarrow e^{-t/20}=\tfrac14\Rightarrow t=20\ln4=40\ln2\).</p>`},
+
+  {n:19,topic:'Asymptotic limit of a solution via L\u2019Hopital',
+   q:r`Let \(y=y(x)\) be the solution of the initial-value problem \[\frac{dy}{dx}+3y=\frac{12x^2+5\sin x}{x^2+1},\qquad y(0)=2026.\] Then \(\displaystyle\lim_{x\to\infty}y(x)\) is equal to:`,
+   opts:['0','12','4','2026'],ans:'C',
+   sol:r`<p class="idea">Write \(y\) through the integrating factor \(e^{3x}\) and apply L'Hopital's rule as \(x\to\infty\).</p>
+<p>Let \(f(x)=\frac{12x^2+5\sin x}{x^2+1}\). Then \(y(x)=2026e^{-3x}+\frac{\int_0^xe^{3t}f(t)dt}{e^{3x}}\). The first term tends to 0, and by L'Hopital's rule \[\lim_{x\to\infty}\frac{e^{3x}f(x)}{3e^{3x}}=\frac13\lim_{x\to\infty}\frac{12x^2+5\sin x}{x^2+1}=\frac{12}3=4.\]</p>
+<div class="trap"><b>Pro tip:</b> for \(y'+ky=f(x)\) with \(k\gt0\) and \(f\to L\), the limit is \(L/k\), independent of \(y(0)\).</div>`},
+
+  {n:20,topic:'Solution curve extremum and improper area',
+   q:r`Let \(y=y(x)\) be the solution of the differential equation \[\frac{dy}{dx}+2y=2e^{-x},\qquad y(0)=0.\] If \(M\) denotes the maximum value of \(y(x)\) for \(x\ge0\), and \(A=\displaystyle\int_0^\infty y(x)\,dx\), then \(M+A\) equals:`,
+   opts:['1',r`\dfrac12`,'2',r`\dfrac32`],ans:'D',
+   sol:r`<p class="idea">Solve the linear ODE, find the critical point for \(M\), and integrate over \([0,\infty)\) for \(A\).</p>
+<p>With integrating factor \(e^{2x}\): \(\frac d{dx}(ye^{2x})=2e^x\Rightarrow ye^{2x}=2e^x+C\). From \(y(0)=0\): \(C=-2\), so \(y=2\left(e^{-x}-e^{-2x}\right)\).</p>
+<p><b>Maximum:</b> \(y'=2e^{-2x}(2-e^x)=0\Rightarrow x=\ln2\) (\(y'\gt0\) before, \(\lt0\) after). \(M=2\left(\tfrac12-\tfrac14\right)=\tfrac12\).</p>
+<p><b>Area:</b> \(A=2\left[-e^{-x}+\tfrac12e^{-2x}\right]_0^\infty=2\left(1-\tfrac12\right)=1\). So \(M+A=\tfrac32\).</p>`},
+
+  {n:21,topic:'Linear ODE initial-value problem (exact evaluation)',
+   q:r`Let \(y=y(x)\) be the solution of the linear differential equation \[\frac{dy}{dx}+\frac{2x}{x^2+1}\,y=\frac{15x^2}{x^2+1},\qquad y(1)=5.\] Find the exact value of \(y(3)\).`,
+   ans:14,
+   sol:r`<p class="idea">The integrating factor is \(e^{\int\frac{2x}{x^2+1}dx}=x^2+1\), which cancels the denominator on the right.</p>
+<p>\(\frac d{dx}\left((x^2+1)y\right)=15x^2\Rightarrow(x^2+1)y=5x^3+C\). From \(y(1)=5\): \(10=5+C\Rightarrow C=5\). So \(y=\frac{5(x^3+1)}{x^2+1}\).</p>
+<p>\(y(3)=\frac{5\cdot28}{10}=14\).</p>`},
+
+  {n:22,topic:'Exact differential equation and monotonicity root',
+   q:r`Let \(y=y(x)\) be the unique differentiable function on \([0,\infty)\) satisfying the exact differential equation \[\left(y^3+3x^2\right)dx+\left(3xy^2+1\right)dy=0,\qquad y(0)=65.\] Find the exact value of \(y(2)\).`,
+   ans:3,
+   sol:r`<p class="idea">Group into \(d(xy^3+x^3+y)=0\), then use strict monotonicity to pin down the unique root.</p>
+<p>\(\frac\partial{\partial y}(y^3+3x^2)=3y^2=\frac\partial{\partial x}(3xy^2+1)\), so the equation is exact: \(xy^3+x^3+y=C\). From \(y(0)=65\): \(C=65\).</p>
+<p>At \(x=2\): \(2y^3+8+y=65\Rightarrow2y^3+y-57=0\). Let \(g(y)=2y^3+y-57\); \(g'(y)=6y^2+1\gt0\), so there is a unique real root. \(g(3)=54+3-57=0\), so \(y(2)=3\).</p>`},
+
+  {n:23,topic:'Bernoulli differential equation (exact integer)',
+   q:r`Let \(y=y(x)\) (\(y\gt0\)) be the solution of the Bernoulli differential equation \[\frac{dy}{dx}+\frac yx=\frac{x^2y^2}6\quad(x\gt0),\qquad y(1)=3.\] Find the exact value of \(y(2)\).`,
+   ans:6,
+   sol:r`<p class="idea">Divide by \(y^2\) and set \(u=\tfrac1y\) to get a linear equation with integrating factor \(\tfrac1x\).</p>
+<p>\(-u'+\frac ux=\frac{x^2}6\Rightarrow u'-\frac ux=-\frac{x^2}6\). With integrating factor \(\frac1x\): \(\frac d{dx}\left(\frac ux\right)=-\frac x6\Rightarrow\frac u x=-\frac{x^2}{12}+C\), i.e. \(\frac1{xy}=C-\frac{x^2}{12}\).</p>
+<p>From \(y(1)=3\): \(\tfrac13=C-\tfrac1{12}\Rightarrow C=\tfrac5{12}\). So \(\frac1{xy}=\frac{5-x^2}{12}\), \(y=\frac{12}{x(5-x^2)}\). At \(x=2\): \(y=\frac{12}{2\cdot1}=6\).</p>`},
+
+  {n:24,topic:'Integral equation to linear ODE (exact integer)',
+   q:r`Let \(f:[0,\infty)\to\mathbb R\) be a continuously differentiable function satisfying the integral equation \[f(x)=5+\int_0^x\left(2f(t)-4e^t\right)dt\qquad\forall x\ge0.\] Find the exact value of \(f(\ln3)\).`,
+   ans:21,
+   sol:r`<p class="idea">Differentiate to form \(f'-2f=-4e^x\) with \(f(0)=5\).</p>
+<p>\(f(0)=5\) and \(f'(x)=2f(x)-4e^x\). Multiply by \(e^{-2x}\): \(\frac d{dx}\left(e^{-2x}f\right)=-4e^{-x}\Rightarrow e^{-2x}f=4e^{-x}+C\). From \(f(0)=5\): \(C=1\). So \(f(x)=4e^x+e^{2x}\).</p>
+<p>At \(x=\ln3\): \(f=4(3)+9=21\).</p>`},
+
+  {n:25,topic:'Normal-intercept geometric ODE',
+   q:r`A curve \(y=f(x)\) lies in the first quadrant and passes through the point \((3,4)\). At every point \(P(x,y)\) on the curve, the normal to the curve meets the positive \(x\)-axis at \(G\) such that \(OG=OP\), where \(O\) is the origin. Find the exact value of \(f(15)\).`,
+   ans:8,
+   sol:r`<p class="idea">The \(x\)-intercept of the normal is \(x+yy'\), and \(\frac d{dx}\sqrt{x^2+y^2}=\frac{x+yy'}{\sqrt{x^2+y^2}}\).</p>
+<p>The normal at \(P\): \(Y-y=-\frac1{y'}(X-x)\). Setting \(Y=0\): \(G=(x+yy',0)\). \(OG=OP\) gives \(x+yy'=\sqrt{x^2+y^2}\).</p>
+<p>Let \(r=\sqrt{x^2+y^2}\). Then \(r\frac{dr}{dx}=x+yy'=r\Rightarrow\frac{dr}{dx}=1\Rightarrow\sqrt{x^2+y^2}=x+C\). Through \((3,4)\): \(5=3+C\Rightarrow C=2\). Squaring: \(y^2=4(x+1)\), so \(f(x)=2\sqrt{x+1}\).</p>
+<p>\(f(15)=2\sqrt{16}=8\).</p>`}
+  ]
+};
+
+</script>
+
+<!-- ===================== TEST ENGINE (same for every paper) ===================== -->
+<script>
+(function(){
+'use strict';
+const Q=PAPER.questions, N=Q.length, TOTAL=N*PAPER.plus, DUR=PAPER.durationMin*60*1000;
+const KEY='mocktest:'+PAPER.id;
+const $=s=>document.querySelector(s);
+const vIntro=$('#v-intro'), vTest=$('#v-test'), vRes=$('#v-result');
+const secOf=q=>PAPER.sections.findIndex(s=>q.n>=s.from&&q.n<=s.to);
+const LET=['A','B','C','D'];
+let S={started:false,startAt:0,deadline:0,cur:0,answers:{},marked:{},visited:{},submitted:false,submitAt:0,auto:false};
+let tick=null, warned={};
+
+/* ---------- storage (best-effort) ---------- */
+function save(){try{localStorage.setItem(KEY,JSON.stringify(S));}catch(e){}}
+function load(){try{const j=localStorage.getItem(KEY);if(j){const o=JSON.parse(j);if(o&&typeof o==='object')S=Object.assign(S,o);}}catch(e){}}
+function wipe(){try{localStorage.removeItem(KEY);}catch(e){}}
+
+/* ---------- helpers ---------- */
+let mjQueue=[];
+function typeset(el){
+  if(window.MathJax&&MathJax.typesetPromise){MathJax.typesetPromise([el]).catch(()=>{});}
+  else{mjQueue.push(el);}
+}
+const mjWait=setInterval(()=>{if(window.MathJax&&MathJax.typesetPromise){clearInterval(mjWait);MathJax.startup.promise.then(()=>{mjQueue.forEach(e=>typeset(e));mjQueue=[];});}},120);
+function show(v){[vIntro,vTest,vRes].forEach(x=>x.hidden=true);v.hidden=false;}
+function toast(msg){const t=$('#toast');t.textContent=msg;t.hidden=false;clearTimeout(toast.t);toast.t=setTimeout(()=>t.hidden=true,2600);}
+function fmt(ms){ms=Math.max(0,ms);const s=Math.ceil(ms/1000);const h=Math.floor(s/3600),m=Math.floor(s%3600/60),sec=s%60;
+  const p=n=>String(n).padStart(2,'0');return h?`${h}:${p(m)}:${p(sec)}`:`${p(m)}:${p(sec)}`;}
+function esc(s){return String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));}
+const hasAns=n=>S.answers[n]!==undefined&&S.answers[n]!=='';
+function status(q){
+  if(!S.visited[q.n])return 'nv';
+  const a=hasAns(q.n),m=!!S.marked[q.n];
+  if(m&&a)return 'am'; if(m)return 'mk'; if(a)return 'an'; return 'na';
+}
+const STATUS_NAME={nv:'Not visited',na:'Not answered',an:'Answered',mk:'Marked for review',am:'Answered and marked for review'};
+function counts(){const c={nv:0,na:0,an:0,mk:0,am:0};Q.forEach(q=>c[status(q)]++);return c;}
+function evalQ(q){
+  if(!hasAns(q.n))return {st:'un',m:0};
+  const a=S.answers[q.n];
+  const ok=q.opts?a===q.ans:Number(a)===q.ans;
+  return ok?{st:'ok',m:PAPER.plus}:{st:'bad',m:PAPER.minus};
+}
+
+/* ---------- intro ---------- */
+function renderIntro(){
+  const secs=PAPER.sections.map(s=>`<li><b>${esc(s.name)} (${esc(s.label)}), Q.${s.from} to Q.${s.to}:</b> ${esc(s.rule)}</li>`).join('');
+  const resumed=S.started&&!S.submitted;
+  vIntro.innerHTML=`<div class="scroll"><div class="page">
+  <div class="card hero"><a class="back" href="../index.html">&larr; All papers</a>
+    <div class="eyebrow">${esc(PAPER.series)} &middot; ${esc(PAPER.subject)}</div>
+    <h1>${esc(PAPER.title)}: Online Mock Test</h1>
+    <div class="meta">
+      <div>Questions<b>${N}</b></div><div>Total marks<b>${TOTAL}</b></div>
+      <div>Duration<b>${PAPER.durationMin} minutes</b></div>
+      <div>Marking<b>+${PAPER.plus} / ${PAPER.minus<0?'\u2212'+Math.abs(PAPER.minus):PAPER.minus}</b></div>
+    </div>
+  </div>
+  <div class="card sec"><h2>General instructions</h2><ol>
+    <li>The countdown timer is shown at the top right. It counts down from ${PAPER.durationMin}:00. When it reaches zero, the test <b>submits automatically</b> and your responses are evaluated.</li>
+    <li>The Question Palette on the right shows the status of each question using the symbols below. Click any number to jump straight to that question.</li>
+    <li>To answer a multiple-choice question, click the circle next to your chosen option. To change your answer, click another option. To deselect, press <b>Clear Response</b>.</li>
+    <li>To answer a numerical question, type the integer with your keyboard or use the on-screen keypad.</li>
+    <li>Click <b>Save &amp; Next</b> to save your answer and move to the next question. This button is enabled only after you give an answer.</li>
+    <li>Click <b>Mark for Review &amp; Next</b> to flag a question for later and move on. If you had already given an answer, it is still counted.</li>
+    <li>Use <b>Previous</b> and <b>Next</b> to move without changing the status of a question. An answer you have selected is never lost when you move around.</li>
+    <li>You can revisit and change any answer until you press <b>Submit</b> or the time runs out.</li>
+    <li>Do not refresh or close the page. If you do, the test resumes from where you left off with the correct time remaining.</li>
+    <li>After submission you will see your score, a question-wise analysis, and a full solution for every question.</li></ol></div>
+  <div class="card sec"><h2>Question palette symbols</h2><ul class="legend-list">
+    <li><span class="pal-btn sym s-nv">1</span> You have not visited the question yet.</li>
+    <li><span class="pal-btn sym s-na">3</span> You have visited the question but not answered it.</li>
+    <li><span class="pal-btn sym s-an">5</span> You have answered the question.</li>
+    <li><span class="pal-btn sym s-mk">7</span> You have not answered the question but marked it for review.</li>
+    <li><span class="pal-btn sym s-am">9</span> You have answered the question and marked it for review. It will be evaluated.</li></ul></div>
+  <div class="card sec"><h2>Marking scheme and sections</h2><ul>${secs}</ul>
+    <p style="margin:12px 0 0;color:var(--muted);font-size:14px"><b>Notation.</b> <span id="notation">${PAPER.notation}</span></p></div>
+  <div class="card start-row">
+    ${resumed?`<div class="notice">You have a test in progress. Press the button below to continue. Your timer has kept running.</div>`:`
+    <label class="agree"><input type="checkbox" id="agree"><span>I have read and understood the instructions. I am ready to begin the test.</span></label>`}
+    <div><button class="btn primary" id="startBtn" ${resumed?'':'disabled'}>${resumed?'Resume Test':'Start Test'}</button></div>
+  </div></div></div>`;
+  show(vIntro);
+  typeset($('#notation'));
+  const ag=$('#agree'),sb=$('#startBtn');
+  if(ag)ag.addEventListener('change',()=>sb.disabled=!ag.checked);
+  sb.addEventListener('click',()=>{
+    if(!S.started){S.started=true;S.startAt=Date.now();S.deadline=S.startAt+DUR;S.cur=0;S.answers={};S.marked={};S.visited={};save();}
+    startTest();
+  });
+}
+
+/* ---------- test ---------- */
+function buildTestShell(){
+  vTest.innerHTML=`
+  <div class="topbar">
+    <div class="ttl"><b>${esc(PAPER.series)} &middot; ${esc(PAPER.title)}</b><span>${esc(PAPER.subject)}</span></div>
+    <div class="timer-box" id="tbox"><span>Time left</span><span class="timer" id="timer" role="timer" aria-live="off">--:--</span></div>
+    <button class="palbtn" id="palbtn" aria-controls="pal">Palette</button>
+  </div>
+  <div class="testgrid">
+    <div class="qpane">
+      <div class="sectabs" id="sectabs"></div>
+      <div class="card qcard">
+        <div class="qhead" id="qhead"></div>
+        <div class="qbody" id="qbody"></div>
+      </div>
+      <div class="savehint" id="savehint"></div>
+      <div class="actions">
+        <div class="grp">
+          <button class="btn review" id="bReview">Mark for Review &amp; Next</button>
+          <button class="btn" id="bClear">Clear Response</button>
+        </div>
+        <div class="grp">
+          <button class="btn" id="bPrev">&larr; Previous</button>
+          <button class="btn" id="bNext">Next &rarr;</button>
+          <button class="btn primary" id="bSave">Save &amp; Next</button>
+        </div>
+      </div>
+    </div>
+    <aside class="card pal" id="pal" aria-label="Question palette">
+      <h3>Question Palette</h3>
+      <div class="pal-scroll">
+        <div class="legend" id="legend"></div>
+        <div id="pgroups"></div>
+      </div>
+      <div class="pal-foot"><button class="btn danger" id="bSubmit">Submit Test</button></div>
+    </aside>
+  </div>
+  <div class="backdrop" id="backdrop"></div>`;
+  $('#bSave').addEventListener('click',onSave);
+  $('#bReview').addEventListener('click',onReview);
+  $('#bClear').addEventListener('click',onClear);
+  $('#bPrev').addEventListener('click',()=>go(S.cur-1));
+  $('#bNext').addEventListener('click',()=>{if(S.cur>=N-1)toast('This is the last question.');else go(S.cur+1);});
+  $('#bSubmit').addEventListener('click',()=>{closePal();confirmSubmit();});
+  $('#palbtn').addEventListener('click',()=>{$('#pal').classList.add('open');$('#backdrop').classList.add('show');});
+  $('#backdrop').addEventListener('click',closePal);
+  $('#legend').innerHTML=['an','na','nv','mk','am'].map(k=>`<div><span class="pal-btn sym s-${k}" data-c="${k}">0</span>${STATUS_NAME[k]}</div>`).join('');
+}
+function closePal(){const p=$('#pal'),b=$('#backdrop');if(p)p.classList.remove('open');if(b)b.classList.remove('show');}
+
+function startTest(){
+  if(!vTest.firstChild)buildTestShell();
+  show(vTest);
+  if(S.cur<0||S.cur>=N)S.cur=0;
+  renderQ();
+  clearInterval(tick);
+  tickFn();tick=setInterval(tickFn,500);
+}
+function tickFn(){
+  const left=S.deadline-Date.now();
+  const t=$('#timer');if(t)t.textContent=fmt(left);
+  const box=$('#tbox');
+  if(box){box.classList.toggle('low',left<=10*60e3&&left>5*60e3);box.classList.toggle('crit',left<=5*60e3);}
+  if(left<=10*60e3&&left>5*60e3&&!warned[10]){warned[10]=1;toast('10 minutes remaining.');}
+  if(left<=5*60e3&&left>60e3&&!warned[5]){warned[5]=1;toast('5 minutes remaining.');}
+  if(left<=60e3&&left>0&&!warned[1]){warned[1]=1;toast('Only 1 minute remaining.');}
+  if(left<=0){clearInterval(tick);doSubmit(true);}
+}
+
+function renderQ(){
+  const q=Q[S.cur], si=secOf(q), sec=PAPER.sections[si];
+  S.visited[q.n]=true; save();
+  $('#sectabs').innerHTML=PAPER.sections.map((s,i)=>`<button class="sectab ${i===si?'on':''}" data-s="${i}">${esc(s.name)}: ${esc(s.label)}</button>`).join('');
+  $('#sectabs').querySelectorAll('.sectab').forEach(b=>b.addEventListener('click',()=>go(PAPER.sections[+b.dataset.s].from-1)));
+  $('#qhead').innerHTML=`<span class="qn">Question ${q.n} of ${N}</span><span class="sp"></span><span class="chip plus">+${PAPER.plus}</span><span class="chip minus">\u2212${Math.abs(PAPER.minus)}</span>`;
+  let body=`<p class="qhint">${q.opts?'Select one option.':'Enter your answer as a non-negative integer.'}</p><div class="qtext">${q.q}</div>`;
+  if(q.opts){
+    body+=`<div class="opts" role="radiogroup" aria-label="Options">`+q.opts.map((o,i)=>{
+      const L=LET[i];
+      return `<label class="opt"><input type="radio" name="opt" value="${L}" ${S.answers[q.n]===L?'checked':''}><span class="ol">${L}</span><span class="ot">\\(${o}\\)</span></label>`;}).join('')+`</div>`;
+  }else{
+    const v=hasAns(q.n)?S.answers[q.n]:'';
+    body+=`<div class="numwrap"><label for="numin">Your answer</label>
+      <input class="numin" id="numin" type="text" inputmode="none" autocomplete="off" maxlength="6" value="${esc(v)}" placeholder="Type or use keypad">
+      <div class="keys">${[7,8,9,4,5,6,1,2,3].map(d=>`<button class="key" data-k="${d}">${d}</button>`).join('')}
+        <button class="key" data-k="0">0</button><button class="key w2" data-k="bs">Backspace</button>
+        <button class="key w2" data-k="clr" style="grid-column:span 3">Clear</button></div></div>`;
+  }
+  const qb=$('#qbody');qb.innerHTML=body;qb.scrollTop=0;
+  if(q.opts){
+    qb.querySelectorAll('input[name=opt]').forEach(i=>i.addEventListener('change',()=>{S.answers[q.n]=i.value;save();refresh();}));
+  }else{
+    const inp=$('#numin');
+    const setV=v=>{v=v.replace(/\D/g,'').slice(0,6);inp.value=v;if(v==='')delete S.answers[q.n];else S.answers[q.n]=v;save();refresh();};
+    inp.addEventListener('keydown',e=>{
+      if(e.key.length===1&&!/\d/.test(e.key)&&!e.ctrlKey&&!e.metaKey)e.preventDefault();
+      if(e.key==='Enter'){e.preventDefault();if(!$('#bSave').disabled)onSave();}
+    });
+    inp.addEventListener('input',()=>setV(inp.value));
+    qb.querySelectorAll('.key').forEach(k=>k.addEventListener('click',()=>{
+      const c=k.dataset.k;
+      if(c==='bs')setV(inp.value.slice(0,-1));else if(c==='clr')setV('');else setV(inp.value+c);
+    }));
+  }
+  typeset(qb);
+  refresh();
+}
+function refresh(){
+  const q=Q[S.cur];
+  const ans=hasAns(q.n);
+  $('#bSave').disabled=!ans;
+  $('#bPrev').disabled=S.cur===0;
+  $('#bClear').disabled=!ans;
+  $('#savehint').textContent=ans?(S.marked[q.n]?'Answer selected. This question is also marked for review.':'Answer selected. Press Save & Next to save and continue.'):'No answer selected. Press Mark for Review & Next or Next to skip this question.';
+  const c=counts();
+  document.querySelectorAll('#legend .sym').forEach(el=>el.textContent=c[el.dataset.c]);
+  $('#pgroups').innerHTML=PAPER.sections.map(s=>{
+    const btns=Q.filter(x=>x.n>=s.from&&x.n<=s.to).map(x=>{
+      const st=status(x);
+      return `<button class="pal-btn s-${st} ${x===q?'cur':''}" data-i="${x.n-1}" aria-label="Question ${x.n}, ${STATUS_NAME[st]}"${x===q?' aria-current="true"':''}>${x.n}</button>`;}).join('');
+    return `<div class="pgroup"><h4>${esc(s.name)}: ${esc(s.label)}</h4><div class="pgrid">${btns}</div></div>`;}).join('');
+  $('#pgroups').querySelectorAll('.pal-btn').forEach(b=>b.addEventListener('click',()=>{go(+b.dataset.i);closePal();}));
+}
+function go(i){
+  if(i<0||i>=N)return;
+  S.cur=i;renderQ();
+}
+function onSave(){
+  const q=Q[S.cur];
+  if(!hasAns(q.n))return;
+  delete S.marked[q.n];save();
+  if(S.cur<N-1)go(S.cur+1);else{refresh();toast('Answer saved. This was the last question.');}
+}
+function onReview(){
+  const q=Q[S.cur];
+  S.marked[q.n]=true;save();
+  if(S.cur<N-1)go(S.cur+1);else{refresh();toast('Marked for review. This was the last question.');}
+}
+function onClear(){
+  const q=Q[S.cur];
+  delete S.answers[q.n];save();
+  renderQ();
+}
+
+/* ---------- submit ---------- */
+function confirmSubmit(){
+  const c=counts();
+  const answered=c.an+c.am, notAns=c.na+c.mk+c.nv;
+  const ov=$('#overlay');
+  ov.innerHTML=`<div class="modal" role="dialog" aria-modal="true" aria-labelledby="mt"><div class="card box">
+    <h2 id="mt">Submit the test?</h2>
+    <p>You still have <b>${fmt(S.deadline-Date.now())}</b> left. You cannot change answers after submitting.</p>
+    <table class="sumtab">
+      <tr><td>Total questions</td><td>${N}</td></tr>
+      <tr><td>Answered</td><td>${answered}</td></tr>
+      <tr><td>Not answered</td><td>${notAns}</td></tr>
+      <tr><td>Marked for review (will be evaluated if answered)</td><td>${c.mk+c.am}</td></tr>
+      <tr><td>Not visited</td><td>${c.nv}</td></tr>
+    </table>
+    <div class="row"><button class="btn" id="mNo">Go back to test</button><button class="btn danger" id="mYes">Yes, submit</button></div>
+  </div></div>`;
+  $('#mNo').addEventListener('click',()=>ov.innerHTML='');
+  $('#mYes').addEventListener('click',()=>{ov.innerHTML='';doSubmit(false);});
+  $('#mNo').focus();
+}
+function doSubmit(auto){
+  if(S.submitted&&!auto)return;
+  clearInterval(tick);
+  $('#overlay').innerHTML='';
+  S.submitted=true;S.auto=!!auto;S.submitAt=Math.min(Date.now(),S.deadline);save();
+  renderResult();
+}
+
+/* ---------- results ---------- */
+let filter='all';
+function renderResult(){
+  const ev=Q.map(q=>({q,e:evalQ(q)}));
+  const ok=ev.filter(x=>x.e.st==='ok').length, bad=ev.filter(x=>x.e.st==='bad').length, un=N-ok-bad;
+  const score=ok*PAPER.plus+bad*PAPER.minus;S.score=score;save();
+  const attempted=ok+bad, acc=attempted?Math.round(ok/attempted*100):0;
+  const tm=Math.max(0,S.submitAt-S.startAt);
+  const secRows=PAPER.sections.map((s,i)=>{
+    const part=ev.filter(x=>secOf(x.q)===i);
+    const a=part.filter(x=>x.e.st==='ok').length,b=part.filter(x=>x.e.st==='bad').length;
+    return `<tr><td><b>${esc(s.name)}</b> <span class="topic">${esc(s.label)}</span></td><td>${part.length}</td><td>${a}</td><td>${b}</td><td>${part.length-a-b}</td><td><b>${a*PAPER.plus+b*PAPER.minus}</b> / ${part.length*PAPER.plus}</td></tr>`;}).join('');
+  vRes.innerHTML=`<div class="scroll"><div class="page">
+    <div class="topbar"><div class="ttl"><b>Test Analysis</b><span>${esc(PAPER.series)} &middot; ${esc(PAPER.title)}</span></div></div>
+    ${S.auto?`<div class="notice">Time is up. Your test was submitted automatically.</div>`:''}
+    <div class="card score">
+      <div class="bigscore"><small>Your score</small><div class="v">${score}<span> / ${TOTAL}</span></div></div>
+      <div class="stats">
+        <div class="stat ok"><b>${ok}</b><span>Correct (+${PAPER.plus} each)</span></div>
+        <div class="stat bad"><b>${bad}</b><span>Wrong (${PAPER.minus} each)</span></div>
+        <div class="stat un"><b>${un}</b><span>Unattempted</span></div>
+        <div class="stat"><b>${acc}%</b><span>Accuracy</span></div>
+        <div class="stat"><b>${fmt(tm)}</b><span>Time taken</span></div>
+      </div>
+    </div>
+    <div class="card"><div class="tablewrap"><table>
+      <thead><tr><th>Section</th><th>Questions</th><th>Correct</th><th>Wrong</th><th>Unattempted</th><th>Marks</th></tr></thead><tbody>${secRows}</tbody></table></div></div>
+    <div class="card">
+      <div class="filters" id="filters">
+        <button class="f" data-f="all">All (${N})</button><button class="f" data-f="ok">Correct (${ok})</button>
+        <button class="f" data-f="bad">Wrong (${bad})</button><button class="f" data-f="un">Unattempted (${un})</button>
+        <span class="hint">Click any question to open its solution.</span>
+      </div>
+      <div class="tablewrap"><table>
+        <thead><tr><th>Q</th><th class="hide-sm">Topic</th><th>Your answer</th><th>Correct answer</th><th>Marks</th><th></th></tr></thead>
+        <tbody id="qrows"></tbody></table></div>
+    </div>
+    <div class="resbar"><button class="btn primary" id="retake">Retake test</button><a class="btn" href="../index.html" style="text-decoration:none;display:inline-block">All papers</a></div>
+  </div></div>`;
+  show(vRes);
+  $('#filters').querySelectorAll('.f').forEach(b=>b.addEventListener('click',()=>{filter=b.dataset.f;drawRows(ev);}));
+  $('#retake').addEventListener('click',()=>{
+    S={started:false,startAt:0,deadline:0,cur:0,answers:{},marked:{},visited:{},submitted:false,submitAt:0,auto:false};
+    warned={};wipe();filter='all';vTest.innerHTML='';renderIntro();
+  });
+  drawRows(ev);
+  vRes.querySelector('.scroll').scrollTop=0;
+}
+function ansLabel(q,v){return v===undefined||v===''?'\u2014':(q.opts?v:v);}
+function drawRows(ev){
+  $('#filters').querySelectorAll('.f').forEach(b=>b.classList.toggle('on',b.dataset.f===filter));
+  const rows=ev.filter(x=>filter==='all'||x.e.st===filter);
+  const tb=$('#qrows');
+  tb.innerHTML=rows.length?rows.map(({q,e})=>{
+    const y=S.answers[q.n];
+    const mcls=e.m>0?'mk-pos':e.m<0?'mk-neg':'mk-zero';
+    return `<tr class="qrow" tabindex="0" role="button" aria-expanded="false" data-n="${q.n}">
+      <td><b>${q.n}</b></td><td class="hide-sm topic">${esc(q.topic)}</td>
+      <td><span class="ans ${e.st}">${esc(ansLabel(q,y))}</span></td>
+      <td><span class="ans key">${q.ans}</span></td>
+      <td class="${mcls}">${e.m>0?'+':e.m<0?'\u2212':''}${Math.abs(e.m)}</td>
+      <td class="open-ind">Solution &#9662;</td></tr>`;}).join(''):`<tr><td colspan="6" class="topic" style="padding:18px">No questions in this category.</td></tr>`;
+  tb.querySelectorAll('.qrow').forEach(tr=>{
+    const tog=()=>toggleSol(tr);
+    tr.addEventListener('click',tog);
+    tr.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();tog();}});
+  });
+}
+function toggleSol(tr){
+  const nxt=tr.nextElementSibling;
+  if(nxt&&nxt.classList.contains('solrow')){nxt.remove();tr.setAttribute('aria-expanded','false');tr.querySelector('.open-ind').innerHTML='Solution &#9662;';return;}
+  const q=Q[+tr.dataset.n-1], y=S.answers[q.n], e=evalQ(q);
+  let opts='';
+  if(q.opts){
+    opts=`<div class="mini-opts">`+q.opts.map((o,i)=>{
+      const L=LET[i];const c=L===q.ans,w=L===y&&!c;
+      return `<div class="${c?'c':w?'w':''}"><b>${L}</b><span>\\(${o}\\)</span>${c?'<span class="tag" style="color:var(--ok)">Correct</span>':w?'<span class="tag" style="color:var(--bad)">Your answer</span>':''}</div>`;}).join('')+`</div>`;
+  }
+  const verdict=e.st==='ok'?'You answered correctly.':e.st==='bad'?`You answered ${q.opts?'('+y+')':y}. The correct answer is ${q.opts?'('+q.ans+')':q.ans}.`:'You did not attempt this question.';
+  const tr2=document.createElement('tr');tr2.className='solrow';
+  tr2.innerHTML=`<td colspan="6"><div class="solbox sol">
+    <h5>Question ${q.n}</h5><div class="qtext">${q.q}</div>${opts}
+    <h5>Solution</h5>${q.sol}
+    <span class="finalans">Correct answer: ${q.opts?'('+q.ans+')':q.ans}</span>
+    <p style="margin:10px 0 0;color:var(--muted);font-size:13px">${verdict}</p></div></td>`;
+  tr.after(tr2);
+  tr.setAttribute('aria-expanded','true');tr.querySelector('.open-ind').innerHTML='Hide &#9652;';
+  typeset(tr2);
+}
+
+/* ---------- boot ---------- */
+window.addEventListener('beforeunload',e=>{if(S.started&&!S.submitted&&!vTest.hidden){e.preventDefault();e.returnValue='';}});
+load();
+if(S.started&&S.submitted){renderResult();}
+else if(S.started&&!S.submitted){
+  if(Date.now()>=S.deadline){S.submitted=true;S.auto=true;S.submitAt=S.deadline;save();renderResult();}
+  else{renderIntro();}
+}else{renderIntro();}
+})();
+</script>
+</body>
+</html>

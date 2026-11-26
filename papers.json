@@ -1,0 +1,82 @@
+[
+  {
+    "file": "papers/01-functions.html",
+    "id": "jee-main-functions-01",
+    "title": "Chapter 1: Functions",
+    "series": "JEE Main Revision Series",
+    "subject": "Class XII Mathematics",
+    "minutes": 60,
+    "questions": 25,
+    "marks": 100
+  },
+  {
+    "file": "papers/05-definite-integration.html",
+    "id": "jee-main-definite-integration-05",
+    "title": "Chapter 5: Definite Integration",
+    "series": "JEE Main Revision Series",
+    "subject": "Class XII Mathematics",
+    "minutes": 60,
+    "questions": 25,
+    "marks": 100
+  },
+  {
+    "file": "papers/08-area-under-curves.html",
+    "id": "jee-main-area-under-curves-08",
+    "title": "Chapter 8: Area Under Curves",
+    "series": "JEE Main Revision Series",
+    "subject": "Class XII Mathematics",
+    "minutes": 60,
+    "questions": 25,
+    "marks": 100
+  },
+  {
+    "file": "papers/09-differential-equations.html",
+    "id": "jee-main-differential-equations-09",
+    "title": "Chapter 9: Differential Equations",
+    "series": "JEE Main Revision Series",
+    "subject": "Class XII Mathematics",
+    "minutes": 60,
+    "questions": 25,
+    "marks": 100
+  },
+  {
+    "file": "papers/10-vector-algebra.html",
+    "id": "jee-main-vector-algebra-10",
+    "title": "Chapter 10: Vector Algebra",
+    "series": "JEE Main Revision Series",
+    "subject": "Class XII Mathematics",
+    "minutes": 60,
+    "questions": 25,
+    "marks": 100
+  },
+  {
+    "file": "papers/11-3d-geometry.html",
+    "id": "jee-main-3d-geometry-11",
+    "title": "Chapter 11: Three-Dimensional Geometry",
+    "series": "JEE Main Revision Series",
+    "subject": "Class XII Mathematics",
+    "minutes": 60,
+    "questions": 25,
+    "marks": 100
+  },
+  {
+    "file": "papers/fst-01-mathematics.html",
+    "id": "jee-main-fst-01",
+    "title": "Full Syllabus Test 1",
+    "series": "JEE Main Revision Series",
+    "subject": "Mathematics",
+    "minutes": 60,
+    "questions": 25,
+    "marks": 100
+  },
+  {
+    "file": "papers/fst-02-mathematics.html",
+    "id": "jee-main-fst-02",
+    "title": "Full Syllabus Test 2",
+    "series": "JEE Main Revision Series",
+    "subject": "Mathematics",
+    "minutes": 60,
+    "questions": 25,
+    "marks": 100
+  }
+]
